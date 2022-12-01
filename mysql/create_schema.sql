@@ -51,13 +51,13 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `event_management`.`VENUE` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `FullName` VARCHAR(45) NOT NULL,
+  `FullName` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `event_management`.`GROUP` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(20) NOT NULL,
+  `Title` VARCHAR(50) NOT NULL,
   `Description` TEXT NOT NULL,
   `IsPublic` TINYINT NOT NULL,
   `MemberCount` INT NOT NULL,
@@ -131,7 +131,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `event_management`.`LOCATION` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `City` VARCHAR(20) NOT NULL,
-  `Street` VARCHAR(20) NOT NULL,
+  `Street` VARCHAR(50) NOT NULL,
   `Number` INT NOT NULL,
   `Latitude` DECIMAL NULL,
   `Longitude` DECIMAL NULL,
@@ -141,7 +141,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `event_management`.`EVENT` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Date` DATE NOT NULL,
-  `Title` VARCHAR(20) NOT NULL,
+  `Title` VARCHAR(50) NOT NULL,
   `Description` TEXT NOT NULL,
   `DailySchedule` TEXT NULL,
   `IsRecurring` TINYINT NOT NULL,
@@ -195,7 +195,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `event_management`.`TOPIC` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Title` VARCHAR(20) NOT NULL,
+  `Title` VARCHAR(50) NOT NULL,
   `Description` TEXT NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
@@ -220,12 +220,12 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `event_management`.`SPONSOR` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(20) NOT NULL,
-  `DomainOfWork` VARCHAR(50) NOT NULL,
+  `Name` VARCHAR(30) NOT NULL,
+  `DomainOfWork` VARCHAR(100) NOT NULL,
   `CurrentCEO` VARCHAR(45) NULL,
   `EstablishmentYear` INT NOT NULL,
   `Headquarters` VARCHAR(45) NOT NULL,
-  `Motto` VARCHAR(45) NULL,
+  `Motto` VARCHAR(100) NULL,
   `ContactMail` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
