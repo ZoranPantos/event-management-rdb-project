@@ -133,8 +133,8 @@ CREATE TABLE IF NOT EXISTS `event_management`.`LOCATION` (
   `City` VARCHAR(20) NOT NULL,
   `Street` VARCHAR(50) NOT NULL,
   `Number` INT NOT NULL,
-  `Latitude` DECIMAL NULL,
-  `Longitude` DECIMAL NULL,
+  `Latitude` DECIMAL(16,14) NULL,
+  `Longitude` DECIMAL(16,14) NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
 
