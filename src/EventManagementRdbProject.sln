@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventManagement.Client", "EventManagement.Client\EventManagement.Client.csproj", "{6FDA9AFE-9638-49E5-8413-19E9010AFCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventManagement.Demo", "EventManagement.Client\EventManagement.Demo.csproj", "{6FDA9AFE-9638-49E5-8413-19E9010AFCA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
