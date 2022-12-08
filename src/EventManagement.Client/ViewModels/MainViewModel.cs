@@ -5,5 +5,5 @@ public class MainViewModel : ViewModelBase
     public ViewModelBase CurrentViewModel { get; }
 
     // Temporarily hardcoded
-    public MainViewModel() => CurrentViewModel = new UpdateUserViewModel();
+    public MainViewModel() => CurrentViewModel = new UserInfoViewModel();
 }

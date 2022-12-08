@@ -10,6 +10,6 @@
         Height="550" Width="800">
 
     <Grid>
-        <views:UpdateUserView DataContext="{Binding CurrentViewModel}" />
+        <views:UserInfoView DataContext="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

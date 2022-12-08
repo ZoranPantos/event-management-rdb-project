@@ -7,7 +7,7 @@ public class UpdateUserViewModel : ViewModelBase
     private string firstName = string.Empty;
     public string FirstName
     {
-        get { return firstName; }
+        get => firstName;
         set
         {
             firstName = value;
@@ -18,7 +18,7 @@ public class UpdateUserViewModel : ViewModelBase
     private string lastName = string.Empty;
     public string LastName
     {
-        get { return lastName; }
+        get => lastName;
         set
         {
             lastName = value;
