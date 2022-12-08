@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventManagement.Client"
+        xmlns:views="clr-namespace:EventManagement.Demo.Views"
         mc:Ignorable="d"
         Title="EventManagement Demo"
         Height="550" Width="800">
+    
     <Grid>
-
+        <views:UpdateUserView DataContext="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
