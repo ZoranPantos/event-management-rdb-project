@@ -1,4 +1,6 @@
-﻿namespace EventManagement.Demo.ViewModels;
+﻿using System.Windows.Input;
+
+namespace EventManagement.Demo.ViewModels;
 
 public class UpdateUserViewModel : ViewModelBase
 {
@@ -23,4 +25,7 @@ public class UpdateUserViewModel : ViewModelBase
             OnPropertyChanged(nameof(LastName));
         }
     }
+
+    public ICommand SaveCommand { get; }
+    public ICommand CancelCommand { get; }
 }
