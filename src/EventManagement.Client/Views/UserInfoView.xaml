@@ -27,6 +27,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -51,6 +52,8 @@
 
             <TextBlock Grid.Row="5" Text="Interests: " />
             <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Interests}" />
+
+            <Button Grid.Row="6" Content="Edit" Command="{Binding EditCommand}" />
         </Grid>
     </Grid>
 </UserControl>

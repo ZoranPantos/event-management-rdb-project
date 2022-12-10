@@ -10,9 +10,8 @@ public class RegularUser
 
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
+    public string Interests { get; set; } = string.Empty;
 
-    // Will have to filter/format user input somehow in order to populate this collection
-    public List<string> Interests { get; set; } = new();
     public DateTime MemberSince { get; set; }
 
     public bool IsSuspended { get; set; }

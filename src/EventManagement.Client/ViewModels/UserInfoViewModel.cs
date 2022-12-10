@@ -1,9 +1,14 @@
-﻿using System;
+﻿using EventManagement.Demo.Infrastructure;
+using EventManagement.Demo.Models;
+using System;
+using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
 public class UserInfoViewModel : ViewModelBase
 {
+    private readonly IEventManagementRepository repository;
+
     private string firstName = string.Empty;
     public string FirstName
     {
@@ -68,5 +73,26 @@ public class UserInfoViewModel : ViewModelBase
             interests = value;
             OnPropertyChanged(nameof(Interests));
         }
+    }
+
+    public ICommand EditCommand { get; }
+
+    public UserInfoViewModel(IEventManagementRepository repository)
+    {
+        this.repository = repository;
+
+        var resultUser = repository.GetUserWithId(2);
+
+        PopulateViewModel(resultUser);
+    }
+
+    private void PopulateViewModel(RegularUser resultUser)
+    {
+        FirstName = resultUser.FirstName;
+        LastName = resultUser.LastName;
+        Age = resultUser.Age;
+        DateJoined = resultUser.MemberSince;
+        Status = resultUser.IsSuspended ? "Suspended" : "Active";
+        Interests = resultUser.Interests;
     }
 }
