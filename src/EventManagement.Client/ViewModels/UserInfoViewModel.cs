@@ -1,4 +1,4 @@
-﻿using EventManagement.Demo.Infrastructure;
+﻿using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Models;
 using System;
 using System.Windows.Input;
