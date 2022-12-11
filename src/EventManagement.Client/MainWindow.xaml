@@ -11,10 +11,10 @@
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="Beige">
-            <Button Content="Home" />
-            <Button Content="My Groups" />
-            <Button Content="My Applications" />
-            <Button Content="Profile" />
+            <Button Content="Home" Command="{Binding HomeCommand}"/>
+            <Button Content="My Groups" Command="{Binding MyGroupsCommand}" />
+            <Button Content="My Applications" Command="{Binding MyApplicationsCommand}" />
+            <Button Content="Profile" Command="{Binding ProfileCommand}" />
         </StackPanel>
 
         <Grid>
