@@ -8,5 +8,5 @@ public class MainViewModel : ViewModelBase
     public ViewModelBase CurrentViewModel { get; }
 
     // Temporarily hardcoded
-    public MainViewModel() => CurrentViewModel = new UpdateUserViewModel(new EventManagementRepository());
+    public MainViewModel() => CurrentViewModel = new UserInfoViewModel(new EventManagementRepository());
 }

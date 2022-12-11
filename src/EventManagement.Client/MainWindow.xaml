@@ -9,7 +9,16 @@
         Title="EventManagement Demo"
         Height="550" Width="800">
 
-    <Grid>
-        <views:UpdateUserView DataContext="{Binding CurrentViewModel}" />
-    </Grid>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Background="Beige">
+            <Button Content="Home" />
+            <Button Content="My Groups" />
+            <Button Content="My Applications" />
+            <Button Content="Profile" />
+        </StackPanel>
+
+        <Grid>
+            <views:UserInfoView DataContext="{Binding CurrentViewModel}" />
+        </Grid>
+    </DockPanel>
 </Window>
