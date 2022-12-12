@@ -8,16 +8,14 @@ namespace EventManagement.Demo.Commands;
 public class NavigateCommand : CommandBase
 {
     private readonly NavigationStore navigationStore;
-    private readonly IEventManagementRepository repository;
+    private readonly Func<ViewModelBase> createViewModel;
 
-    public NavigateCommand(NavigationStore navigationStore, IEventManagementRepository repository)
+    public NavigateCommand(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
     {
         this.navigationStore = navigationStore;
-        this.repository = repository;
+        this.createViewModel = createViewModel;
     }
 
-    public override void Execute(object? parameter)
-    {
-        navigationStore.CurrentViewModel = new UpdateUserViewModel(repository);
-    }
+    public override void Execute(object? parameter) =>
+        navigationStore.CurrentViewModel = createViewModel();
 }

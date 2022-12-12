@@ -91,6 +91,7 @@ public class EventManagementRepository : IEventManagementRepository
 
             int affectedRows = command.ExecuteNonQuery();
 
+            // Repository should not communicate directly to the UI - change this!
             string message = affectedRows == 1 ? "User successfully updated" : "Update failed";
             MessageBox.Show(message);
         }

@@ -74,16 +74,17 @@ public class UserInfoViewModel : ViewModelBase
             OnPropertyChanged(nameof(Interests));
         }
     }
-
+    
     public ICommand EditCommand { get; }
 
-    public UserInfoViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
+    public UserInfoViewModel(
+        IEventManagementRepository repository,
+        NavigationStore navigationStore,
+        Func<ViewModelBase> createViewModel)
     {
-        var resultUser = repository.GetUserWithId(2);
+        PopulateViewModel(repository.GetUserWithId(2));
 
-        PopulateViewModel(resultUser);
-
-        EditCommand = new NavigateCommand(navigationStore, repository);
+        EditCommand = new NavigateCommand(navigationStore, createViewModel);
     }
 
     private void PopulateViewModel(RegularUser resultUser)

@@ -24,7 +24,7 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        navigationStore.CurrentViewModel = new UserInfoViewModel(repository, navigationStore);
+        navigationStore.CurrentViewModel = new UserInfoViewModel(repository, navigationStore, CreateUpdateUserViewModel);
 
         MainWindow = new MainWindow()
         {
@@ -34,5 +34,15 @@ public partial class App : Application
         MainWindow.Show();
 
         base.OnStartup(e);
+    }
+
+    private UpdateUserViewModel CreateUpdateUserViewModel()
+    {
+        return new UpdateUserViewModel(repository, navigationStore, CreateUserInfoViewModel);
+    }
+
+    private UserInfoViewModel CreateUserInfoViewModel()
+    {
+        return new UserInfoViewModel(repository, navigationStore, CreateUpdateUserViewModel);
     }
 }
