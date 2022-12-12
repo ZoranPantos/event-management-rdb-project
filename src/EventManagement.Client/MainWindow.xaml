@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventManagement.Client"
         xmlns:views="clr-namespace:EventManagement.Demo.Views"
+        xmlns:vms="clr-namespace:EventManagement.Demo.ViewModels"
         mc:Ignorable="d"
         Title="EventManagement Demo"
         Height="550" Width="800">
@@ -18,7 +19,17 @@
         </StackPanel>
 
         <Grid>
-            <views:UserInfoView DataContext="{Binding CurrentViewModel}" />
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type vms:UserInfoViewModel}">
+                    <views:UserInfoView/>
+                </DataTemplate>
+                
+                <DataTemplate DataType="{x:Type vms:UpdateUserViewModel}">
+                    <views:UpdateUserView/>
+                </DataTemplate>
+            </Grid.Resources>
+
+            <ContentControl Content="{Binding CurrentViewModel}" />
         </Grid>
     </DockPanel>
 </Window>

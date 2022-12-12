@@ -1,5 +1,7 @@
-﻿using EventManagement.Demo.Infrastructure.Repositories;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Models;
+using EventManagement.Demo.Stores;
 using System;
 using System.Windows.Input;
 
@@ -7,8 +9,6 @@ namespace EventManagement.Demo.ViewModels;
 
 public class UserInfoViewModel : ViewModelBase
 {
-    private readonly IEventManagementRepository repository;
-
     private string firstName = string.Empty;
     public string FirstName
     {
@@ -77,13 +77,13 @@ public class UserInfoViewModel : ViewModelBase
 
     public ICommand EditCommand { get; }
 
-    public UserInfoViewModel(IEventManagementRepository repository)
+    public UserInfoViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
     {
-        this.repository = repository;
-
         var resultUser = repository.GetUserWithId(2);
 
         PopulateViewModel(resultUser);
+
+        EditCommand = new NavigateCommand(navigationStore, repository);
     }
 
     private void PopulateViewModel(RegularUser resultUser)
