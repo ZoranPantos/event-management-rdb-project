@@ -6,5 +6,5 @@ namespace EventManagement.Demo.Infrastructure.Repositories;
 public interface IEventManagementRepository
 {
     RegularUser GetUserWithId(int id);
-    void UpdateUserWithId(int id, UpdateUserViewModel viewModel);
+    void UpdateUserWithId(int id, UpdateProfileViewModel viewModel);
 }

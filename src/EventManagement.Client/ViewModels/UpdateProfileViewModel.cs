@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
-public class UpdateUserViewModel : ViewModelBase
+public class UpdateProfileViewModel : ViewModelBase
 {
     private string firstName = string.Empty;
     public string FirstName
@@ -33,7 +33,7 @@ public class UpdateUserViewModel : ViewModelBase
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
 
-    public UpdateUserViewModel(
+    public UpdateProfileViewModel(
         IEventManagementRepository repository,
         NavigationStore navigationStore,
         Func<ViewModelBase> createViewModel)

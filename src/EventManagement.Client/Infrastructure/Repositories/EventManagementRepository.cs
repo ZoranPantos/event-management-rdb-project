@@ -56,7 +56,7 @@ public class EventManagementRepository : IEventManagementRepository
         return resultUser;
     }
 
-    public void UpdateUserWithId(int id, UpdateUserViewModel viewModel)
+    public void UpdateUserWithId(int id, UpdateProfileViewModel viewModel)
     {
         try
         {

@@ -11,11 +11,11 @@ public class UpdateUserCommand : CommandBase
     private readonly NavigationStore navigationStore;
     private readonly Func<ViewModelBase> createViewModel;
 
-    private readonly UpdateUserViewModel updateUserViewModel;
+    private readonly UpdateProfileViewModel updateUserViewModel;
     private readonly IEventManagementRepository eventManagementRepository;
 
     public UpdateUserCommand(
-        UpdateUserViewModel updateUserViewModel,
+        UpdateProfileViewModel updateUserViewModel,
         IEventManagementRepository eventManagementRepository,
         NavigationStore navigationStore,
         Func<ViewModelBase> createViewModel)
@@ -30,8 +30,8 @@ public class UpdateUserCommand : CommandBase
 
     private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName.Equals(nameof(UpdateUserViewModel.FirstName)) ||
-            e.PropertyName.Equals(nameof(UpdateUserViewModel.LastName)))
+        if (e.PropertyName.Equals(nameof(UpdateProfileViewModel.FirstName)) ||
+            e.PropertyName.Equals(nameof(UpdateProfileViewModel.LastName)))
         {
             OnCanExecuteChanged();
         }

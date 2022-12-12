@@ -18,9 +18,9 @@ namespace EventManagement.Demo.Views
     /// <summary>
     /// Interaction logic for UpdateUserView.xaml
     /// </summary>
-    public partial class UpdateUserView : UserControl
+    public partial class UpdateProfileView : UserControl
     {
-        public UpdateUserView()
+        public UpdateProfileView()
         {
             InitializeComponent();
         }

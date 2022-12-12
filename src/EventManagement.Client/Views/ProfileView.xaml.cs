@@ -18,9 +18,9 @@ namespace EventManagement.Demo.Views
     /// <summary>
     /// Interaction logic for UserInfoView.xaml
     /// </summary>
-    public partial class UserInfoView : UserControl
+    public partial class ProfileView : UserControl
     {
-        public UserInfoView()
+        public ProfileView()
         {
             InitializeComponent();
         }

@@ -20,12 +20,12 @@
 
         <Grid>
             <Grid.Resources>
-                <DataTemplate DataType="{x:Type vms:UserInfoViewModel}">
-                    <views:UserInfoView/>
+                <DataTemplate DataType="{x:Type vms:ProfileViewModel}">
+                    <views:ProfileView/>
                 </DataTemplate>
                 
-                <DataTemplate DataType="{x:Type vms:UpdateUserViewModel}">
-                    <views:UpdateUserView/>
+                <DataTemplate DataType="{x:Type vms:UpdateProfileViewModel}">
+                    <views:UpdateProfileView/>
                 </DataTemplate>
             </Grid.Resources>
 

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
-public class UserInfoViewModel : ViewModelBase
+public class ProfileViewModel : ViewModelBase
 {
     private string firstName = string.Empty;
     public string FirstName
@@ -77,7 +77,7 @@ public class UserInfoViewModel : ViewModelBase
     
     public ICommand EditCommand { get; }
 
-    public UserInfoViewModel(
+    public ProfileViewModel(
         IEventManagementRepository repository,
         NavigationStore navigationStore,
         Func<ViewModelBase> createViewModel)
