@@ -1,8 +1,10 @@
-﻿using EventManagement.Demo.Infrastructure.Queries;
+﻿using EventManagement.Demo.DTOs;
+using EventManagement.Demo.Infrastructure.Queries;
 using EventManagement.Demo.Models;
 using EventManagement.Demo.ViewModels;
 using MySqlConnector;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows;
 
@@ -101,4 +103,43 @@ public class EventManagementRepository : IEventManagementRepository
         }
     }
 
+    public ICollection<SingleApplicationDTO> GetAllApplicationsForSpecificUser(int userId)
+    {
+        var applications = new List<SingleApplicationDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getAllApplicationsForSpecificUser, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "id",
+                Value = userId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                applications.Add(new SingleApplicationDTO
+                {
+                    UserId = (int)reader.GetValue(0),
+                    EventId = (int)reader.GetValue(1),
+                    Event = (string)reader.GetValue(2),
+                    EventDate = (DateTime)reader.GetValue(3),
+                    Group = (string)reader.GetValue(4)
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return applications;
+    }
 }
