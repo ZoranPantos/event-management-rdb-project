@@ -10,10 +10,10 @@ public class MainViewModel : ViewModelBase
 
     public ViewModelBase CurrentViewModel => navigationStore.CurrentViewModel;
 
-    public ICommand HomeCommand { get; }
-    public ICommand MyGroupsCommand { get; }
-    public ICommand MyApplicationsCommand { get; }
-    public ICommand ProfileCommand { get; }
+    public ICommand HomeCommand { get; set; }
+    public ICommand MyGroupsCommand { get; set; }
+    public ICommand MyApplicationsCommand { get; set; }
+    public ICommand ProfileCommand { get; set; }
 
     public MainViewModel(NavigationStore navigationStore)
     {

@@ -21,11 +21,15 @@
         <Grid>
             <Grid.Resources>
                 <DataTemplate DataType="{x:Type vms:ProfileViewModel}">
-                    <views:ProfileView/>
+                    <views:ProfileView />
                 </DataTemplate>
                 
                 <DataTemplate DataType="{x:Type vms:UpdateProfileViewModel}">
-                    <views:UpdateProfileView/>
+                    <views:UpdateProfileView />
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vms:ApplicationsViewModel}">
+                    <views:ApplicationsView />
                 </DataTemplate>
             </Grid.Resources>
 

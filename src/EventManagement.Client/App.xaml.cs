@@ -1,4 +1,5 @@
-﻿using EventManagement.Demo.Infrastructure.Repositories;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Stores;
 using EventManagement.Demo.ViewModels;
 using System.Windows;
@@ -24,11 +25,16 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
+        //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
+        navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
 
         MainWindow = new MainWindow()
         {
             DataContext = new MainViewModel(navigationStore)
+            {
+                ProfileCommand = new NavigateCommand(navigationStore, CreateProfileViewModel),
+                MyApplicationsCommand = new NavigateCommand(navigationStore, CreateApplicationsViewModel)
+            }
         };
 
         MainWindow.Show();
@@ -36,13 +42,18 @@ public partial class App : Application
         base.OnStartup(e);
     }
 
-    private UpdateProfileViewModel CreateUpdateUserViewModel()
+    private UpdateProfileViewModel CreateUpdateProfileViewModel()
     {
-        return new UpdateProfileViewModel(repository, navigationStore, CreateUserInfoViewModel);
+        return new UpdateProfileViewModel(repository, navigationStore, CreateProfileViewModel);
     }
 
-    private ProfileViewModel CreateUserInfoViewModel()
+    private ProfileViewModel CreateProfileViewModel()
     {
-        return new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
+        return new ProfileViewModel(repository, navigationStore, CreateUpdateProfileViewModel);
+    }
+
+    private ApplicationsViewModel CreateApplicationsViewModel()
+    {
+        return new ApplicationsViewModel(repository);
     }
 }
