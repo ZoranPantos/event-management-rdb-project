@@ -142,4 +142,43 @@ public class EventManagementRepository : IEventManagementRepository
 
         return applications;
     }
+
+    public void DeleteEventApplication(int userId, int eventId)
+    {
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(DeleteQueries.deleteApplicationForEvent, connection);
+
+            command.Parameters.AddRange(
+                new MySqlParameter[]
+                {
+                    new MySqlParameter
+                    {
+                        ParameterName = "userId",
+                        Value = userId,
+                        DbType = DbType.Int32
+                    },
+                    new MySqlParameter
+                    {
+                        ParameterName = "eventId",
+                        Value = eventId,
+                        DbType = DbType.Int32
+                    }
+                }
+            );
+
+            int affectedRows = command.ExecuteNonQuery();
+
+            // Repository should not communicate directly to the UI - change this!
+            string message = affectedRows == 1 ? "Application successfully deleted" : "Delete failed";
+            MessageBox.Show(message);
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+    }
 }
