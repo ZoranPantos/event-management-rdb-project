@@ -26,7 +26,8 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
-        navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
+        //navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
+        navigationStore.CurrentViewModel = new GroupsViewModel(repository);
 
         MainWindow = new MainWindow()
         {
