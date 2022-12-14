@@ -10,4 +10,5 @@ public interface IEventManagementRepository
     RegularUser GetUserWithId(int id);
     void UpdateUserWithId(int id, UpdateProfileViewModel viewModel);
     ICollection<SingleApplicationDTO> GetAllApplicationsForSpecificUser(int userId);
+    void DeleteEventApplication(int userId, int eventId);
 }

@@ -1,5 +1,7 @@
-﻿using EventManagement.Demo.Infrastructure.Repositories;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.Infrastructure.Repositories;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
@@ -20,6 +22,6 @@ public class ApplicationsViewModel : ViewModelBase
         var applicationDTOs = repository.GetAllApplicationsForSpecificUser(2);
 
         foreach (var applicationDTO in applicationDTOs)
-            Applications.Add(new SingleApplicationViewModel(applicationDTO));
+            Applications.Add(new SingleApplicationViewModel(applicationDTO, repository, Applications));
     }
 }

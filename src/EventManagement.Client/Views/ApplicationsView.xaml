@@ -41,7 +41,8 @@
                         <GridViewColumn Header="Control">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="not yet implemented" />
+                                    <Button Content="Remove"
+                                            Command="{Binding RemoveCommand}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

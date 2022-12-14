@@ -1,5 +1,9 @@
-﻿using EventManagement.Demo.DTOs;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.DTOs;
+using EventManagement.Demo.Infrastructure.Repositories;
 using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
@@ -13,6 +17,15 @@ public class SingleApplicationViewModel : ViewModelBase
     public string Event => applicationDTO.Event;
     public DateTime EventDate => applicationDTO.EventDate;
 
-    public SingleApplicationViewModel(SingleApplicationDTO applicationDTO) =>
+    public ICommand RemoveCommand { get; }
+
+    public SingleApplicationViewModel(
+        SingleApplicationDTO applicationDTO,
+        IEventManagementRepository repository,
+        ObservableCollection<SingleApplicationViewModel> applications)
+    {
         this.applicationDTO = applicationDTO;
+
+        RemoveCommand = new RemoveApplicationCommand(UserId, EventId, repository, applications, this);
+    }
 }
