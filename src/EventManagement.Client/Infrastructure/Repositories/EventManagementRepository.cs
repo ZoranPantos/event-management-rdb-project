@@ -181,4 +181,44 @@ public class EventManagementRepository : IEventManagementRepository
             MessageBox.Show(e.Message);
         }
     }
+
+    public ICollection<SingleGroupDTO> GetAllGroupsCreatedBySpecificUser(int userId)
+    {
+        var groups = new List<SingleGroupDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand("user_groups_list", connection);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "userId",
+                Value = userId,
+                DbType = DbType.Int32,
+                Direction = ParameterDirection.Input,
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                groups.Add(new SingleGroupDTO
+                {
+                    GroupId = (int)reader.GetValue(0),
+                    Title = (string)reader.GetValue(1)
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return groups;
+    }
 }

@@ -11,4 +11,5 @@ public interface IEventManagementRepository
     void UpdateUserWithId(int id, UpdateProfileViewModel viewModel);
     ICollection<SingleApplicationDTO> GetAllApplicationsForSpecificUser(int userId);
     void DeleteEventApplication(int userId, int eventId);
+    ICollection<SingleGroupDTO> GetAllGroupsCreatedBySpecificUser(int userId);
 }
