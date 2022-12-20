@@ -35,6 +35,10 @@
                 <DataTemplate DataType="{x:Type vms:GroupsViewModel}">
                     <views:GroupsView />
                 </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vms:GroupDetailsViewModel}">
+                    <views:GroupDetailsView />
+                </DataTemplate>
             </Grid.Resources>
 
             <ContentControl Content="{Binding CurrentViewModel}" />

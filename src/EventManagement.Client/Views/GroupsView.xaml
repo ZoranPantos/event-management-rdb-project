@@ -20,11 +20,12 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
                         <GridViewColumn Header="Control">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Visit"
-                                            Command="{Binding RemoveCommand}"/>
+                                            Command="{Binding VisitGroupCommand}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

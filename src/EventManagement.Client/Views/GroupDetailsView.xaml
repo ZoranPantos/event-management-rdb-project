@@ -25,25 +25,25 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Title: " />
-        <TextBlock Grid.Column="1" Text="test" />
+        <TextBlock Grid.Column="1" Text="{Binding Title}" />
 
         <TextBlock Grid.Row="1" Text="Description" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="test" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" />
 
         <TextBlock Grid.Row="2" Text="Active status: " />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="test" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ActiveStatus}" />
 
         <TextBlock Grid.Row="3" Text="Public status: " />
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="test" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PublicStatus}" />
 
         <TextBlock Grid.Row="4" Text="Venue: " />
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="test" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Venue}" />
 
         <TextBlock Grid.Row="5" Text="Member count: " />
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="test" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding MemberCount}" />
 
         <TextBlock Grid.Row="6" Text="Group events: " />
-        <ListView Grid.Row="6" Grid.Column="1">
+        <ListView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Events}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title">
@@ -66,7 +66,7 @@
         </ListView>
 
         <TextBlock Grid.Row="7" Text="Group members: " />
-        <ListView Grid.Row="7" Grid.Column="1">
+        <ListView Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Members}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First name">

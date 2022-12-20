@@ -27,7 +27,8 @@ public partial class App : Application
     {
         //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
         //navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
-        navigationStore.CurrentViewModel = new GroupsViewModel(repository);
+        //navigationStore.CurrentViewModel = new GroupsViewModel(repository);
+        navigationStore.CurrentViewModel = new GroupDetailsViewModel(1, repository);
 
         MainWindow = new MainWindow()
         {
