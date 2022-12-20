@@ -35,7 +35,8 @@ public partial class App : Application
             DataContext = new MainViewModel(navigationStore)
             {
                 ProfileCommand = new NavigateCommand(navigationStore, CreateProfileViewModel),
-                MyApplicationsCommand = new NavigateCommand(navigationStore, CreateApplicationsViewModel)
+                MyApplicationsCommand = new NavigateCommand(navigationStore, CreateApplicationsViewModel),
+                MyGroupsCommand = new NavigateCommand(navigationStore, CreateGroupsViewModel)
             }
         };
 
@@ -57,5 +58,10 @@ public partial class App : Application
     private ApplicationsViewModel CreateApplicationsViewModel()
     {
         return new ApplicationsViewModel(repository);
+    }
+
+    private GroupsViewModel CreateGroupsViewModel()
+    {
+        return new GroupsViewModel(repository);
     }
 }
