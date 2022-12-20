@@ -12,4 +12,6 @@ public interface IEventManagementRepository
     ICollection<SingleApplicationDTO> GetAllApplicationsForSpecificUser(int userId);
     void DeleteEventApplication(int userId, int eventId);
     ICollection<SingleGroupDTO> GetAllGroupsCreatedBySpecificUser(int userId);
+    Group GetGroupWithId(int id);
+    Venue GetGroupVenue(int groupId);
 }

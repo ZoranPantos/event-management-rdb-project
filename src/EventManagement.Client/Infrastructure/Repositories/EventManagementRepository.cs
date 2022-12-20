@@ -221,4 +221,74 @@ public class EventManagementRepository : IEventManagementRepository
 
         return groups;
     }
+
+    public Group GetGroupWithId(int id)
+    {
+        var resultGroup = new Group();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getGroupWithId, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "groupId",
+                Value = id,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+            reader.Read();
+
+            resultGroup.Id = id;
+
+            resultGroup.Title = (string)reader.GetValue("Title");
+            resultGroup.Description = (string)reader.GetValue("Description");
+            resultGroup.MemberCount = (int)reader.GetValue("MemberCount");
+
+            resultGroup.IsSuspended = reader.GetValue("IsSuspended").ToString().Equals("1");
+            resultGroup.IsPublic = reader.GetValue("IsPublic").ToString().Equals("1");
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return resultGroup;
+    }
+
+    public Venue GetGroupVenue(int groupId)
+    {
+        var resultVenue = new Venue();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getGroupVenue, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "groupId",
+                Value = groupId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+            reader.Read();
+
+            resultVenue.Id = (int)reader.GetValue("Id");
+            resultVenue.FullName = (string)reader.GetValue("FullName");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        return resultVenue;
+    }
 }
