@@ -62,6 +62,7 @@ public partial class App : Application
 
     private GroupsViewModel CreateGroupsViewModel()
     {
-        return new GroupsViewModel(repository);
+        return new GroupsViewModel(repository, navigationStore);
     }
+    
 }

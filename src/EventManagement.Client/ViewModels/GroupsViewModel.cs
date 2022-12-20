@@ -1,4 +1,5 @@
 ﻿using EventManagement.Demo.Infrastructure.Repositories;
+using EventManagement.Demo.Stores;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,23 +9,19 @@ public class GroupsViewModel : ViewModelBase
 {
     public ObservableCollection<SingleGroupViewModel> Groups { get; set; }
 
-    // I need to send group Id to this command from the SingleGroupViewModel when I call it
-    // This command should create appropriate view-model with the help of the group Id
-    public ICommand VisitGroupCommand { get; }
-
-    public GroupsViewModel(IEventManagementRepository repository)
+    public GroupsViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
     {
         Groups = new();
 
-        PopulateViewModel(repository);
+        PopulateViewModel(repository, navigationStore);
     }
 
-    private void PopulateViewModel(IEventManagementRepository repository)
+    private void PopulateViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
     {
         // Get this user Id from some upper layers
         var groupDTOs = repository.GetAllGroupsCreatedBySpecificUser(2);
 
         foreach (var groupDTO in groupDTOs)
-            Groups.Add(new SingleGroupViewModel(groupDTO));
+            Groups.Add(new SingleGroupViewModel(groupDTO, repository, navigationStore));
     }
 }
