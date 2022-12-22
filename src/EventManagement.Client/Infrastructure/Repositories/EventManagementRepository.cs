@@ -291,4 +291,44 @@ public class EventManagementRepository : IEventManagementRepository
 
         return resultVenue;
     }
+
+    public ICollection<SingleGroupMemberDTO> GetGroupMembers(int groupId)
+    {
+        var members = new List<SingleGroupMemberDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getGroupMembers, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "groupId",
+                Value = groupId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                members.Add(new SingleGroupMemberDTO
+                {
+                    UserId = (int)reader.GetValue("Id"),
+                    FirstName = (string)reader.GetValue("FirstName"),
+                    LastName = (string)reader.GetValue("LastName"),
+                    Age = (int)reader.GetValue("Age"),
+                    Interests = (string)reader.GetValue("Interests")
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return members;
+    }
 }

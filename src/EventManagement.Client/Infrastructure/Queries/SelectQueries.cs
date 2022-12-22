@@ -23,4 +23,11 @@ public class SelectQueries
         $@"SELECT v.Id, FullName FROM event_management.venue v
         INNER JOIN event_management.`group` g ON v.Id=g.VENUE_Id
         WHERE g.Id=@groupId";
+
+    public const string getGroupMembers =
+        $@"SELECT Id, FirstName, LastName, Age, Interests FROM event_management.registers r
+        INNER JOIN event_management.regular_user ru
+        ON r.REGULAR_USER_USER_Id=ru.USER_Id
+        INNER JOIN event_management.`user` u ON u.Id=ru.USER_Id
+        WHERE r.GROUP_Id=@groupId";
 }

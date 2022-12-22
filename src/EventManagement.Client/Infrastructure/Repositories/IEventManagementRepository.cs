@@ -14,4 +14,5 @@ public interface IEventManagementRepository
     ICollection<SingleGroupDTO> GetAllGroupsCreatedBySpecificUser(int userId);
     Group GetGroupWithId(int id);
     Venue GetGroupVenue(int groupId);
+    ICollection<SingleGroupMemberDTO> GetGroupMembers(int groupId);
 }

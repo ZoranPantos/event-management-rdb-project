@@ -72,7 +72,7 @@
                     <GridViewColumn Header="First name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock />
+                                <TextBlock Text="{Binding FirstName}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -80,7 +80,23 @@
                     <GridViewColumn Header="Last name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock />
+                                <TextBlock Text="{Binding LastName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Age">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Age}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Interests">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Interests}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
