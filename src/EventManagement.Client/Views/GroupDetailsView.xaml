@@ -49,15 +49,15 @@
                     <GridViewColumn Header="Title">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock />
+                                <TextBlock Text="{Binding Title}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     
-                    <GridViewColumn Header="Date">
+                    <GridViewColumn Header="Control">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock />
+                                <Button Content="Visit" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

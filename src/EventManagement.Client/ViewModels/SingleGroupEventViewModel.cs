@@ -1,7 +1,16 @@
-﻿namespace EventManagement.Demo.ViewModels;
+﻿using EventManagement.Demo.DTOs;
 
-// To be used as a view-model to show list of events from certain group
+namespace EventManagement.Demo.ViewModels;
+
 public class SingleGroupEventViewModel : ViewModelBase
 {
+    private readonly SingleGroupEventDTO groupEventDTO;
 
+    public int EventId => groupEventDTO.EventId;
+    public string Title => groupEventDTO.Title;
+
+    public SingleGroupEventViewModel(SingleGroupEventDTO groupEventDTO)
+    {
+        this.groupEventDTO = groupEventDTO;
+    }
 }

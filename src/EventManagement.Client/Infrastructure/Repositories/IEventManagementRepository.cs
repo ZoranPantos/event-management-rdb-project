@@ -15,4 +15,5 @@ public interface IEventManagementRepository
     Group GetGroupWithId(int id);
     Venue GetGroupVenue(int groupId);
     ICollection<SingleGroupMemberDTO> GetGroupMembers(int groupId);
+    ICollection<SingleGroupEventDTO> GetGroupEvents(int groupId);
 }

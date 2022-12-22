@@ -95,12 +95,18 @@ public class GroupDetailsViewModel : ViewModelBase
         PublicStatus = group.IsPublic ? "Public" : "Private";
         Venue = group.Venue.FullName;
 
-        // get group member DTOs here and fill up Members collection
         var groupMemberDTOs = repository.GetGroupMembers(groupId);
 
         Members = new();
 
         foreach (var groupMemberDTO in groupMemberDTOs)
             Members.Add(new SingleGroupMemberViewModel(groupMemberDTO));
+
+        Events = new();
+
+        var groupEventDTOs = repository.GetGroupEvents(groupId);
+
+        foreach (var groupEventDTO in groupEventDTOs)
+            Events.Add(new SingleGroupEventViewModel(groupEventDTO));
     }
 }

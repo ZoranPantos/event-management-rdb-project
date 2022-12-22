@@ -30,4 +30,9 @@ public class SelectQueries
         ON r.REGULAR_USER_USER_Id=ru.USER_Id
         INNER JOIN event_management.`user` u ON u.Id=ru.USER_Id
         WHERE r.GROUP_Id=@groupId";
+
+    public const string getGroupEvents =
+        $@"SELECT Id, Title FROM event_management.`event` e
+        INNER JOIN event_management.organizes o ON e.Id=o.EVENT_Id
+        WHERE o.GROUP_Id=@groupId";
 }
