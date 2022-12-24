@@ -36,7 +36,8 @@ public partial class App : Application
             {
                 ProfileCommand = new NavigateCommand(navigationStore, CreateProfileViewModel),
                 MyApplicationsCommand = new NavigateCommand(navigationStore, CreateApplicationsViewModel),
-                MyGroupsCommand = new NavigateCommand(navigationStore, CreateGroupsViewModel)
+                MyGroupsCommand = new NavigateCommand(navigationStore, CreateGroupsViewModel),
+                HomeCommand = new NavigateCommand(navigationStore, CreateAiringEventsViewModel)
             }
         };
 
@@ -63,6 +64,11 @@ public partial class App : Application
     private GroupsViewModel CreateGroupsViewModel()
     {
         return new GroupsViewModel(repository, navigationStore);
+    }
+
+    private AiringEventsViewModel CreateAiringEventsViewModel()
+    {
+        return new AiringEventsViewModel();
     }
     
 }

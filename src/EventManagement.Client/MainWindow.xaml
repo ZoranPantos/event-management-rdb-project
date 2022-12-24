@@ -39,6 +39,10 @@
                 <DataTemplate DataType="{x:Type vms:GroupDetailsViewModel}">
                     <views:GroupDetailsView />
                 </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vms:AiringEventsViewModel}">
+                    <views:AiringEventsView />
+                </DataTemplate>
             </Grid.Resources>
 
             <ContentControl Content="{Binding CurrentViewModel}" />
