@@ -28,7 +28,7 @@ public partial class App : Application
         //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
         //navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
         //navigationStore.CurrentViewModel = new GroupsViewModel(repository);
-        navigationStore.CurrentViewModel = new GroupDetailsViewModel(1, repository);
+        navigationStore.CurrentViewModel = CreateAiringEventsViewModel();
 
         MainWindow = new MainWindow()
         {
@@ -68,7 +68,7 @@ public partial class App : Application
 
     private AiringEventsViewModel CreateAiringEventsViewModel()
     {
-        return new AiringEventsViewModel();
+        return new AiringEventsViewModel(repository);
     }
     
 }

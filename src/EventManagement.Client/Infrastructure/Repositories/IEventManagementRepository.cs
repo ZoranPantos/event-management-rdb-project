@@ -16,4 +16,7 @@ public interface IEventManagementRepository
     Venue GetGroupVenue(int groupId);
     ICollection<SingleGroupMemberDTO> GetGroupMembers(int groupId);
     ICollection<SingleGroupEventDTO> GetGroupEvents(int groupId);
+    ICollection<Topic> GetAllTopicsForEvent(int eventId);
+    ICollection<string> GetSponsorNamesForEvent(int eventId);
+    ICollection<AiringEventDTO> GetAiringEvents();
 }

@@ -35,4 +35,23 @@ public class SelectQueries
         $@"SELECT Id, Title FROM event_management.`event` e
         INNER JOIN event_management.organizes o ON e.Id=o.EVENT_Id
         WHERE o.GROUP_Id=@groupId";
+
+    public const string getAiringEventsWithGroupName =
+        $@"SELECT e.Id, e.Title, e.`Date`, e.`Description`, DailySchedule, City, Street, `Number`, g.Title
+        FROM event_management.`event` e
+        INNER JOIN event_management.location l ON e.LOCATION_Id=l.Id
+        INNER JOIN event_management.organizes o ON o.EVENT_Id=e.Id
+        INNER JOIN event_management.`group` g ON o.GROUP_Id=g.Id
+        WHERE e.`Date`>CURRENT_DATE()";
+
+    public const string getAllTopicsForEvent =
+        $@"SELECT * FROM event_management.topic t
+        INNER JOIN event_management.has h ON t.Id=h.TOPIC_Id
+        WHERE h.EVENT_Id=@eventId";
+
+    public const string getSponsorNamesForEvent =
+        $@"SELECT `Name` FROM event_management.sponsor s
+        INNER JOIN event_management.sponsors ss
+        ON s.Id=ss.SPONSOR_Id
+        WHERE ss.EVENT_Id=@eventId";
 }

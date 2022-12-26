@@ -368,4 +368,124 @@ public class EventManagementRepository : IEventManagementRepository
 
         return events;
     }
+
+    public ICollection<Topic> GetAllTopicsForEvent(int eventId)
+    {
+        var topics = new List<Topic>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getAllTopicsForEvent, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                topics.Add(new Topic
+                {
+                    Id = (int)reader.GetValue("Id"),
+                    Title = (string)reader.GetValue("Title"),
+                    Description = (string)reader.GetValue("Description")
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return topics;
+    }
+
+    public ICollection<string> GetSponsorNamesForEvent(int eventId)
+    {
+        var sponsorNames = new List<string>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getSponsorNamesForEvent, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+                sponsorNames.Add((string)reader.GetValue("Name"));
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return sponsorNames;
+    }
+
+    public ICollection<AiringEventDTO> GetAiringEvents()
+    {
+        var airingEventDTOs = new List<AiringEventDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getAiringEventsWithGroupName, connection);
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int eventId = (int)reader.GetValue("Id");
+
+                var topics = GetAllTopicsForEvent(eventId);
+                var sponsors = GetSponsorNamesForEvent(eventId);
+
+                var airingEventDTO = new AiringEventDTO
+                {
+                    EventId = eventId,
+                    EventTitle = (string)reader.GetValue(1),
+                    Date = (DateTime)reader.GetValue("Date"),
+                    Description = (string)reader.GetValue("Description"),
+                    DailySchedule = (string)reader.GetValue("DailySchedule"),
+                    City = (string)reader.GetValue("City"),
+                    Street = (string)reader.GetValue("Street"),
+                    Number = (int)reader.GetValue("Number"),
+                    GroupName = (string)reader.GetValue(8)
+                };
+
+                foreach (var topic in topics)
+                    airingEventDTO.Topics += $" {topic.Title} ";
+
+                foreach (var sponsor in sponsors)
+                    airingEventDTO.Sponsors += $" {sponsor} ";
+
+                airingEventDTOs.Add(airingEventDTO);
+            }
+
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return airingEventDTOs;
+    }
 }
