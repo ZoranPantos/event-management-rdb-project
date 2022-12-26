@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 
 namespace EventManagement.Demo.ViewModels;
 
-public class AiringEventsViewModel : ViewModelBase
+public class ForthcomingEventsViewModel : ViewModelBase
 {
     public ObservableCollection<SingleForthcomingEventViewModel> Airings { get; set; }
 
-    public AiringEventsViewModel(IEventManagementRepository repository)
+    public ForthcomingEventsViewModel(IEventManagementRepository repository)
     {
         Airings = new();
 

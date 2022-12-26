@@ -40,8 +40,8 @@
                     <views:GroupDetailsView />
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type vms:AiringEventsViewModel}">
-                    <views:AiringEventsView />
+                <DataTemplate DataType="{x:Type vms:ForthcomingEventsViewModel}">
+                    <views:ForthcomingEventsView />
                 </DataTemplate>
             </Grid.Resources>
 

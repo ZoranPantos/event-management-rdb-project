@@ -28,7 +28,7 @@ public partial class App : Application
         //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
         //navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
         //navigationStore.CurrentViewModel = new GroupsViewModel(repository);
-        navigationStore.CurrentViewModel = CreateAiringEventsViewModel();
+        navigationStore.CurrentViewModel = CreateForthcomingEventsViewModel();
 
         MainWindow = new MainWindow()
         {
@@ -37,7 +37,7 @@ public partial class App : Application
                 ProfileCommand = new NavigateCommand(navigationStore, CreateProfileViewModel),
                 MyApplicationsCommand = new NavigateCommand(navigationStore, CreateApplicationsViewModel),
                 MyGroupsCommand = new NavigateCommand(navigationStore, CreateGroupsViewModel),
-                HomeCommand = new NavigateCommand(navigationStore, CreateAiringEventsViewModel)
+                HomeCommand = new NavigateCommand(navigationStore, CreateForthcomingEventsViewModel)
             }
         };
 
@@ -66,9 +66,9 @@ public partial class App : Application
         return new GroupsViewModel(repository, navigationStore);
     }
 
-    private AiringEventsViewModel CreateAiringEventsViewModel()
+    private ForthcomingEventsViewModel CreateForthcomingEventsViewModel()
     {
-        return new AiringEventsViewModel(repository);
+        return new ForthcomingEventsViewModel(repository);
     }
     
 }
