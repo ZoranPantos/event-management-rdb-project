@@ -34,7 +34,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Apply"
-                                        Command="{Binding ApplyToEventCommand}" />
+                                        Command="{Binding ApplyToEventCommand,
+                                        UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

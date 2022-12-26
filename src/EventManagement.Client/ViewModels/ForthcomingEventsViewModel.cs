@@ -19,6 +19,6 @@ public class ForthcomingEventsViewModel : ViewModelBase
         var airingEventDTOs = repository.GetForthcomingEvents();
 
         foreach (var airingEventDTO in airingEventDTOs)
-            Airings.Add(new SingleForthcomingEventViewModel(airingEventDTO));
+            Airings.Add(new SingleForthcomingEventViewModel(airingEventDTO, repository));
     }
 }

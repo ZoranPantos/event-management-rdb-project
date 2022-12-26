@@ -19,4 +19,5 @@ public interface IEventManagementRepository
     ICollection<Topic> GetAllTopicsForEvent(int eventId);
     ICollection<string> GetSponsorNamesForEvent(int eventId);
     ICollection<ForthcomingEventDTO> GetForthcomingEvents();
+    void ApplyForEvent(int userId, int eventId);
 }
