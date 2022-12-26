@@ -37,12 +37,7 @@ public class SelectQueries
         WHERE o.GROUP_Id=@groupId";
 
     public const string getAiringEventsWithGroupName =
-        $@"SELECT e.Id, e.Title, e.`Date`, e.`Description`, DailySchedule, City, Street, `Number`, g.Title
-        FROM event_management.`event` e
-        INNER JOIN event_management.location l ON e.LOCATION_Id=l.Id
-        INNER JOIN event_management.organizes o ON o.EVENT_Id=e.Id
-        INNER JOIN event_management.`group` g ON o.GROUP_Id=g.Id
-        WHERE e.`Date`>CURRENT_DATE()";
+        $@"SELECT * FROM event_management.forthcoming_events_view";
 
     public const string getAllTopicsForEvent =
         $@"SELECT * FROM event_management.topic t

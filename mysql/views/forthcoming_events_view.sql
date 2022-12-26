@@ -4,14 +4,19 @@ CREATE
     SQL SECURITY DEFINER
 VIEW `event_management`.`forthcoming_events_view` AS
     SELECT 
-        `e`.`Title` AS `Event`,
-        `g`.`Title` AS `Group`,
+        `e`.`Id` AS `Id`,
+        `e`.`Title` AS `Title`,
         `e`.`Date` AS `Date`,
-        `l`.`City` AS `City`
+        `e`.`Description` AS `Description`,
+        `e`.`DailySchedule` AS `DailySchedule`,
+        `l`.`City` AS `City`,
+        `l`.`Street` AS `Street`,
+        `l`.`Number` AS `Number`,
+        `g`.`Title` AS `GroupName`
     FROM
         (((`event_management`.`event` `e`
-        JOIN `event_management`.`organizes` `o` ON ((`e`.`Id` = `o`.`EVENT_Id`)))
-        JOIN `event_management`.`group` `g` ON ((`o`.`GROUP_Id` = `g`.`Id`)))
         JOIN `event_management`.`location` `l` ON ((`e`.`LOCATION_Id` = `l`.`Id`)))
+        JOIN `event_management`.`organizes` `o` ON ((`o`.`EVENT_Id` = `e`.`Id`)))
+        JOIN `event_management`.`group` `g` ON ((`o`.`GROUP_Id` = `g`.`Id`)))
     WHERE
-        (NOW() <= `e`.`Date`)
+        (`e`.`Date` > CURDATE())

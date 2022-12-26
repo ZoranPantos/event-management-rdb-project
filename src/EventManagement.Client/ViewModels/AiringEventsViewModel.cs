@@ -5,7 +5,7 @@ namespace EventManagement.Demo.ViewModels;
 
 public class AiringEventsViewModel : ViewModelBase
 {
-    public ObservableCollection<SingleAiringEventViewModel> Airings { get; set; }
+    public ObservableCollection<SingleForthcomingEventViewModel> Airings { get; set; }
 
     public AiringEventsViewModel(IEventManagementRepository repository)
     {
@@ -16,9 +16,9 @@ public class AiringEventsViewModel : ViewModelBase
 
     private void PopulateViewModel(IEventManagementRepository repository)
     {
-        var airingEventDTOs = repository.GetAiringEvents();
+        var airingEventDTOs = repository.GetForthcomingEvents();
 
         foreach (var airingEventDTO in airingEventDTOs)
-            Airings.Add(new SingleAiringEventViewModel(airingEventDTO));
+            Airings.Add(new SingleForthcomingEventViewModel(airingEventDTO));
     }
 }

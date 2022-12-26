@@ -438,9 +438,9 @@ public class EventManagementRepository : IEventManagementRepository
         return sponsorNames;
     }
 
-    public ICollection<AiringEventDTO> GetAiringEvents()
+    public ICollection<ForthcomingEventDTO> GetForthcomingEvents()
     {
-        var airingEventDTOs = new List<AiringEventDTO>();
+        var airingEventDTOs = new List<ForthcomingEventDTO>();
 
         try
         {
@@ -458,17 +458,17 @@ public class EventManagementRepository : IEventManagementRepository
                 var topics = GetAllTopicsForEvent(eventId);
                 var sponsors = GetSponsorNamesForEvent(eventId);
 
-                var airingEventDTO = new AiringEventDTO
+                var airingEventDTO = new ForthcomingEventDTO
                 {
                     EventId = eventId,
-                    EventTitle = (string)reader.GetValue(1),
+                    EventTitle = (string)reader.GetValue("Title"),
                     Date = (DateTime)reader.GetValue("Date"),
                     Description = (string)reader.GetValue("Description"),
                     DailySchedule = (string)reader.GetValue("DailySchedule"),
                     City = (string)reader.GetValue("City"),
                     Street = (string)reader.GetValue("Street"),
                     Number = (int)reader.GetValue("Number"),
-                    GroupName = (string)reader.GetValue(8)
+                    GroupName = (string)reader.GetValue("GroupName")
                 };
 
                 foreach (var topic in topics)

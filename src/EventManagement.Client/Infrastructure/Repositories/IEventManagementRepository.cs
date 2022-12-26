@@ -18,5 +18,5 @@ public interface IEventManagementRepository
     ICollection<SingleGroupEventDTO> GetGroupEvents(int groupId);
     ICollection<Topic> GetAllTopicsForEvent(int eventId);
     ICollection<string> GetSponsorNamesForEvent(int eventId);
-    ICollection<AiringEventDTO> GetAiringEvents();
+    ICollection<ForthcomingEventDTO> GetForthcomingEvents();
 }

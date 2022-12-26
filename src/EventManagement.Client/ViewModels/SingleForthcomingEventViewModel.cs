@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
-public class SingleAiringEventViewModel : ViewModelBase
+public class SingleForthcomingEventViewModel : ViewModelBase
 {
     //private string title = string.Empty;
     //public string Title
@@ -91,7 +91,7 @@ public class SingleAiringEventViewModel : ViewModelBase
     //    }
     //}
 
-    private readonly AiringEventDTO airingEventDTO;
+    private readonly ForthcomingEventDTO airingEventDTO;
 
     public int EventId => airingEventDTO.EventId;
     public string Title => airingEventDTO.EventTitle;
@@ -106,7 +106,7 @@ public class SingleAiringEventViewModel : ViewModelBase
 
     public ICommand ApplyToEventCommand { get; }
 
-    public SingleAiringEventViewModel(AiringEventDTO airingEventDTO)
+    public SingleForthcomingEventViewModel(ForthcomingEventDTO airingEventDTO)
     {
         this.airingEventDTO = airingEventDTO;
 

@@ -2,7 +2,7 @@
 
 namespace EventManagement.Demo.DTOs;
 
-public class AiringEventDTO
+public class ForthcomingEventDTO
 {
     public int EventId { get; set; }
     public int Number { get; set; }
