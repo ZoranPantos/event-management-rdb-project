@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -54,10 +55,19 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     
-                    <GridViewColumn Header="Control">
+                    <GridViewColumn Header="Control 1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Visit" />
+                                <Button Content="Details" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Control 2">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete"
+                                        Command="{Binding DeleteEventCommand}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -65,8 +75,10 @@
             </ListView.View>
         </ListView>
 
-        <TextBlock Grid.Row="7" Text="Group members: " />
-        <ListView Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Members}">
+        <Button Grid.Row="7" Grid.Column="1" Content="New Event" />
+
+        <TextBlock Grid.Row="8" Text="Group members: " />
+        <ListView Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Members}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First name">

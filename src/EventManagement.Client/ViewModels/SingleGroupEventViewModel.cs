@@ -1,4 +1,8 @@
-﻿using EventManagement.Demo.DTOs;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.DTOs;
+using EventManagement.Demo.Infrastructure.Repositories;
+using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace EventManagement.Demo.ViewModels;
 
@@ -9,8 +13,16 @@ public class SingleGroupEventViewModel : ViewModelBase
     public int EventId => groupEventDTO.EventId;
     public string Title => groupEventDTO.Title;
 
-    public SingleGroupEventViewModel(SingleGroupEventDTO groupEventDTO)
+    public ICommand VisitEventPageCommand { get; }
+    public ICommand DeleteEventCommand { get; }
+
+    public SingleGroupEventViewModel(
+        SingleGroupEventDTO groupEventDTO,
+        IEventManagementRepository repository,
+        ObservableCollection<SingleGroupEventViewModel> events)
     {
         this.groupEventDTO = groupEventDTO;
+
+        DeleteEventCommand = new DeleteEventCommand(repository, EventId, events, this);
     }
 }

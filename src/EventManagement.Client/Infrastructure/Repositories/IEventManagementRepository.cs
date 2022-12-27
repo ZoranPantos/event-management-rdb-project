@@ -20,4 +20,5 @@ public interface IEventManagementRepository
     ICollection<string> GetSponsorNamesForEvent(int eventId);
     ICollection<ForthcomingEventDTO> GetForthcomingEvents();
     void ApplyForEvent(int userId, int eventId);
+    void DeleteEvent(int eventId);
 }

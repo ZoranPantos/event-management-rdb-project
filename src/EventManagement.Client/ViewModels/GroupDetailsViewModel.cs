@@ -107,6 +107,6 @@ public class GroupDetailsViewModel : ViewModelBase
         var groupEventDTOs = repository.GetGroupEvents(groupId);
 
         foreach (var groupEventDTO in groupEventDTOs)
-            Events.Add(new SingleGroupEventViewModel(groupEventDTO));
+            Events.Add(new SingleGroupEventViewModel(groupEventDTO, repository, Events));
     }
 }

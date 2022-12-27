@@ -527,4 +527,32 @@ public class EventManagementRepository : IEventManagementRepository
             MessageBox.Show(e.Message);
         }
     }
+
+    public void DeleteEvent(int eventId)
+    {
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(DeleteQueries.deleteEvent, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            int affectedRows = command.ExecuteNonQuery();
+
+            // Repository should not communicate directly to the UI - change this!
+            string message = affectedRows == 1 ? "Event deleted" : "Operation failed";
+            MessageBox.Show(message);
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+    }
 }
