@@ -22,7 +22,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Title: " />
@@ -75,7 +75,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Grid.Row="7" Grid.Column="1" Content="New Event" />
+        <Button Grid.Row="7" Grid.Column="1" Content="New Event" Width="100" HorizontalAlignment="Left" />
 
         <TextBlock Grid.Row="8" Text="Group members: " />
         <ListView Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Members}">
