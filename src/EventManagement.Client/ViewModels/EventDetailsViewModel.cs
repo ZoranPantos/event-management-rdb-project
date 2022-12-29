@@ -1,4 +1,5 @@
-﻿using EventManagement.Demo.Models;
+﻿using EventManagement.Demo.Infrastructure.Repositories;
+using EventManagement.Demo.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -112,13 +113,22 @@ public class EventDetailsViewModel : ViewModelBase
 
     public ICommand RescheduleEventCommand { get; }
 
-    public EventDetailsViewModel()
+    public EventDetailsViewModel(IEventManagementRepository repository, int eventId)
     {
-        PopulateViewModel();
+        PopulateViewModel(repository, eventId);
     }
 
-    private void PopulateViewModel()
+    private void PopulateViewModel(IEventManagementRepository repository, int eventId)
     {
+        var _event = repository.GetEvent(eventId);
 
+        Title = _event.Title;
+        Description = _event.Description;
+        Date = _event.Date;
+        DailySchedule = _event.DailySchedule;
+        IsRecurring = _event.IsReccuring;
+        IsOpen = _event.IsOpen;
+        IsSuspended = _event.IsSuspended;
+        Location = _event.Location.ToString();
     }
 }

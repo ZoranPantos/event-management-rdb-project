@@ -22,4 +22,5 @@ public interface IEventManagementRepository
     void ApplyForEvent(int userId, int eventId);
     void DeleteEvent(int eventId);
     Location GetLocation(int locationId);
+    Event GetEvent(int eventId);
 }

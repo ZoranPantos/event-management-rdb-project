@@ -53,4 +53,8 @@ public class SelectQueries
     public const string getLocation =
         $@"SELECT * FROM event_management.location l
         WHERE l.Id=@locationId";
+
+    public const string getEvent =
+        $@"SELECT * FROM event_management.`event` e
+        WHERE e.Id=@eventId";
 }

@@ -562,10 +562,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
-            connection.Open();
+            var tmpConnection = new MySqlConnection(connectionString);
+            tmpConnection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getLocation, connection);
+            var command = new MySqlCommand(SelectQueries.getLocation, tmpConnection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -590,5 +590,45 @@ public class EventManagementRepository : IEventManagementRepository
         }
 
         return location;
+    }
+
+    public Event GetEvent(int eventId)
+    {
+        var _event = new Event();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getEvent, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+            reader.Read();
+
+            _event.Id = eventId;
+            _event.Date = (DateTime)reader.GetValue("Date");
+            _event.Title = (string)reader.GetValue("Title");
+            _event.Description = (string)reader.GetValue("Description");
+            _event.DailySchedule = (string)reader.GetValue("DailySchedule");
+            _event.IsReccuring = reader.GetValue("IsRecurring").ToString().Equals("1");
+            _event.IsOpen = reader.GetValue("IsOpen").ToString().Equals("1");
+            _event.IsSuspended = reader.GetValue("IsSuspended").ToString().Equals("1");
+
+            _event.Location = GetLocation((int)reader.GetValue("LOCATION_Id"));
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return _event;
     }
 }
