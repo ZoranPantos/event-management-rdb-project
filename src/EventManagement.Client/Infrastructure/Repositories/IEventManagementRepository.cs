@@ -21,4 +21,5 @@ public interface IEventManagementRepository
     ICollection<ForthcomingEventDTO> GetForthcomingEvents();
     void ApplyForEvent(int userId, int eventId);
     void DeleteEvent(int eventId);
+    Location GetLocation(int locationId);
 }

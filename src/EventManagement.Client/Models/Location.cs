@@ -10,4 +10,6 @@ public class Location
 
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
+
+    public override string ToString() => $"{City}, {Street} {Number} ({Latitude}, {Longitude})";
 }

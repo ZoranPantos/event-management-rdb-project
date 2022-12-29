@@ -416,7 +416,7 @@ public class EventManagementRepository : IEventManagementRepository
             connection = new(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getSponsorNamesForEvent, connection);
+            var command = new MySqlCommand(SelectQueries.getSponsorNamesAndMoneyForEvent, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -554,5 +554,41 @@ public class EventManagementRepository : IEventManagementRepository
         {
             MessageBox.Show(e.Message);
         }
+    }
+
+    public Location GetLocation(int locationId)
+    {
+        var location = new Location();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getLocation, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "locationId",
+                Value = locationId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+            reader.Read();
+
+            location.Id = locationId;
+            location.City = (string)reader.GetValue("City");
+            location.Street = (string)reader.GetValue("Street");
+            location.Number = (int)reader.GetValue("Number");
+            location.Latitude = (decimal)reader.GetValue("Latitude");
+            location.Longitude = (decimal)reader.GetValue("Longitude");
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return location;
     }
 }
