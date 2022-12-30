@@ -12,7 +12,7 @@ namespace EventManagement.Demo.Infrastructure.Repositories;
 
 public class EventManagementRepository : IEventManagementRepository
 {
-    private MySqlConnection? connection;
+    //private MySqlConnection? connection;
 
     // TODO: Put this string into a config file
     private readonly string connectionString = "server=localhost;user ID=root;password=root;database=event_management";
@@ -23,10 +23,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getUserWithId, connection);
+            using var command = new MySqlCommand(SelectQueries.getUserWithId, connection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -35,7 +35,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             reader.Read();
 
             // Maybe add a Populate method in the RegularUser entity and move this mapping there?
@@ -62,10 +62,10 @@ public class EventManagementRepository : IEventManagementRepository
     {
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(UpdateQueries.updateUserWithId, connection);
+            using var command = new MySqlCommand(UpdateQueries.updateUserWithId, connection);
 
             command.Parameters.AddRange(
                 new MySqlParameter[]
@@ -109,10 +109,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getAllApplicationsForSpecificUser, connection);
+            using var command = new MySqlCommand(SelectQueries.getAllApplicationsForSpecificUser, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -121,7 +121,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -147,10 +147,10 @@ public class EventManagementRepository : IEventManagementRepository
     {
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(DeleteQueries.deleteApplicationForEvent, connection);
+            using var command = new MySqlCommand(DeleteQueries.deleteApplicationForEvent, connection);
 
             command.Parameters.AddRange(
                 new MySqlParameter[]
@@ -188,10 +188,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand("user_groups_list", connection);
+            using var command = new MySqlCommand("user_groups_list", connection);
 
             command.CommandType = CommandType.StoredProcedure;
 
@@ -203,7 +203,7 @@ public class EventManagementRepository : IEventManagementRepository
                 Direction = ParameterDirection.Input,
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -228,10 +228,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getGroupWithId, connection);
+            using var command = new MySqlCommand(SelectQueries.getGroupWithId, connection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -240,7 +240,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             reader.Read();
 
             resultGroup.Id = id;
@@ -266,10 +266,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getGroupVenue, connection);
+            using var command = new MySqlCommand(SelectQueries.getGroupVenue, connection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -278,7 +278,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             reader.Read();
 
             resultVenue.Id = (int)reader.GetValue("Id");
@@ -298,10 +298,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getGroupMembers, connection);
+            using var command = new MySqlCommand(SelectQueries.getGroupMembers, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -310,7 +310,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -338,10 +338,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getGroupEvents, connection);
+            using var command = new MySqlCommand(SelectQueries.getGroupEvents, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -350,7 +350,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -375,10 +375,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getAllTopicsForEvent, connection);
+            using var command = new MySqlCommand(SelectQueries.getAllTopicsForEvent, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -387,7 +387,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -413,10 +413,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getSponsorNamesForEvent, connection);
+            using var command = new MySqlCommand(SelectQueries.getSponsorNamesForEvent, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -425,7 +425,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
                 sponsorNames.Add((string)reader.GetValue("Name"));
@@ -444,12 +444,12 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getAiringEventsWithGroupName, connection);
+            using var command = new MySqlCommand(SelectQueries.getAiringEventsWithGroupName, connection);
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -493,10 +493,10 @@ public class EventManagementRepository : IEventManagementRepository
     {
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(InsertQueries.applyToEvent, connection);
+            using var command = new MySqlCommand(InsertQueries.applyToEvent, connection);
 
             command.Parameters.AddRange(
                 new MySqlParameter[]
@@ -532,10 +532,10 @@ public class EventManagementRepository : IEventManagementRepository
     {
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(DeleteQueries.deleteEvent, connection);
+            using var command = new MySqlCommand(DeleteQueries.deleteEvent, connection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -562,10 +562,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            var tmpConnection = new MySqlConnection(connectionString);
+            using var tmpConnection = new MySqlConnection(connectionString);
             tmpConnection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getLocation, tmpConnection);
+            using var command = new MySqlCommand(SelectQueries.getLocation, tmpConnection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -574,7 +574,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             reader.Read();
 
             location.Id = locationId;
@@ -598,10 +598,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getEvent, connection);
+            using var command = new MySqlCommand(SelectQueries.getEvent, connection);
 
             command.Parameters.Add(new MySqlParameter
             {
@@ -610,7 +610,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             reader.Read();
 
             _event.Id = eventId;
@@ -638,10 +638,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getSponsorNameAndMoneyProvidedForEvent, connection);
+            using var command = new MySqlCommand(SelectQueries.getSponsorNameAndMoneyProvidedForEvent, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -650,7 +650,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
@@ -675,10 +675,10 @@ public class EventManagementRepository : IEventManagementRepository
 
         try
         {
-            connection = new(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getEventAttendees, connection);
+            using var command = new MySqlCommand(SelectQueries.getEventAttendees, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -687,7 +687,7 @@ public class EventManagementRepository : IEventManagementRepository
                 DbType = DbType.Int32
             });
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
