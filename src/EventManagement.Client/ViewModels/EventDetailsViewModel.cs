@@ -2,6 +2,7 @@
 using EventManagement.Demo.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
@@ -130,5 +131,7 @@ public class EventDetailsViewModel : ViewModelBase
         IsOpen = _event.IsOpen;
         IsSuspended = _event.IsSuspended;
         Location = _event.Location.ToString();
+
+        Topics = new(repository.GetAllTopicsForEvent(eventId).ToList<Topic>());
     }
 }
