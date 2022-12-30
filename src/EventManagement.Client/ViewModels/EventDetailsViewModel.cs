@@ -1,5 +1,7 @@
-﻿using EventManagement.Demo.Infrastructure.Repositories;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Models;
+using EventManagement.Demo.Stores;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -113,10 +115,13 @@ public class EventDetailsViewModel : ViewModelBase
     public ObservableCollection<SingleEventAttendeeViewModel> Attendees { get; set; }
 
     public ICommand RescheduleEventCommand { get; }
+    public ICommand GoBack { get; }
 
-    public EventDetailsViewModel(IEventManagementRepository repository, int eventId)
+    public EventDetailsViewModel(IEventManagementRepository repository, int eventId, Func<ViewModelBase> createViewModel, NavigationStore navigationStore)
     {
         PopulateViewModel(repository, eventId);
+
+        GoBack = new NavigateCommand(navigationStore, createViewModel);
     }
 
     private void PopulateViewModel(IEventManagementRepository repository, int eventId)

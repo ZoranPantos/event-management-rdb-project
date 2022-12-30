@@ -58,7 +58,7 @@
                     <GridViewColumn Header="Control 1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Details" />
+                                <Button Content="Details" Command="{Binding VisitEventPageCommand}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

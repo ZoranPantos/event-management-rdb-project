@@ -1,4 +1,5 @@
 ﻿using EventManagement.Demo.Infrastructure.Repositories;
+using EventManagement.Demo.Stores;
 using System.Collections.ObjectModel;
 
 namespace EventManagement.Demo.ViewModels;
@@ -76,14 +77,14 @@ public class GroupDetailsViewModel : ViewModelBase
     public ObservableCollection<SingleGroupMemberViewModel> Members { get; set; }
     public ObservableCollection<SingleGroupEventViewModel> Events { get; set; }
 
-    public GroupDetailsViewModel(int groupId, IEventManagementRepository repository)
+    public GroupDetailsViewModel(int groupId, IEventManagementRepository repository, NavigationStore navigationStore)
     {
         this.groupId = groupId;
 
-        PopulateViewModel(repository);
+        PopulateViewModel(repository, navigationStore);
     }
 
-    private void PopulateViewModel(IEventManagementRepository repository)
+    private void PopulateViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
     {
         var group = repository.GetGroupWithId(groupId);
         group.Venue = repository.GetGroupVenue(groupId);
@@ -107,6 +108,6 @@ public class GroupDetailsViewModel : ViewModelBase
         var groupEventDTOs = repository.GetGroupEvents(groupId);
 
         foreach (var groupEventDTO in groupEventDTOs)
-            Events.Add(new SingleGroupEventViewModel(groupEventDTO, repository, Events));
+            Events.Add(new SingleGroupEventViewModel(groupEventDTO, repository, Events, navigationStore, groupId));
     }
 }

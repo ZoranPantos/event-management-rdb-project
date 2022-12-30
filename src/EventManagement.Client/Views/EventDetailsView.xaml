@@ -126,5 +126,7 @@
         </ListView>
 
         <Button Grid.Row="12" Content="Reschedule" Command="{Binding RescheduleEventCommand}" />
+        <Button Grid.Row="12" Grid.Column="1" Content="Back" Width="100" HorizontalAlignment="Left"
+                Command="{Binding GoBack}"/>
     </Grid>
 </UserControl>
