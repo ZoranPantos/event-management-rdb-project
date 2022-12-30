@@ -104,6 +104,25 @@
 
         <TextBlock Grid.Row="11" Text="Attendees: " />
         <ListView Grid.Row="11" Grid.Column="1" ItemsSource="{Binding Attendees}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="First name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FirstName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Last name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LastName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
 
         <Button Grid.Row="12" Content="Reschedule" Command="{Binding RescheduleEventCommand}" />

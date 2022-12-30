@@ -139,5 +139,11 @@ public class EventDetailsViewModel : ViewModelBase
 
         foreach (var sponsor in sponsors)
             Sponsors.Add(new SingleEventSponsorViewModel(sponsor));
+
+        var attendees = repository.GetAttendees(eventId);
+        Attendees = new();
+
+        foreach (var attendee in attendees)
+            Attendees.Add(new SingleEventAttendeeViewModel(attendee));
     }
 }

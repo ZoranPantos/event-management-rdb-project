@@ -24,4 +24,5 @@ public interface IEventManagementRepository
     Location GetLocation(int locationId);
     Event GetEvent(int eventId);
     ICollection<SingleEventSponsorDTO> GetEventSponsors(int eventId);
+    ICollection<SingleEventAttendeeDTO> GetAttendees(int eventId);
 }

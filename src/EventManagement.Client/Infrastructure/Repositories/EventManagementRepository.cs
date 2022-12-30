@@ -668,4 +668,41 @@ public class EventManagementRepository : IEventManagementRepository
 
         return sponsors;
     }
+
+    public ICollection<SingleEventAttendeeDTO> GetAttendees(int eventId)
+    {
+        var attendees = new List<SingleEventAttendeeDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getEventAttendees, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                attendees.Add(new SingleEventAttendeeDTO()
+                {
+                    FirstName = (string)reader.GetValue("FirstName"),
+                    LastName = (string)reader.GetValue("LastName")
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return attendees;
+    }
 }

@@ -62,5 +62,11 @@ public class SelectQueries
         $@"SELECT `Name`, MoneyProvided FROM event_management.sponsor s
         INNER JOIN event_management.sponsors ss
         ON s.Id=ss.SPONSOR_Id
-        WHERE ss.EVENT_Id=@eventId;";
+        WHERE ss.EVENT_Id=@eventId";
+
+    public const string getEventAttendees =
+        $@"SELECT FirstName, LastName FROM event_management.`user` u
+        INNER JOIN event_management.regular_user ru ON u.Id=ru.USER_Id
+        INNER JOIN event_management.applies_to a ON a.REGULAR_USER_USER_Id=u.Id
+        WHERE a.EVENT_Id=@eventId;";
 }
