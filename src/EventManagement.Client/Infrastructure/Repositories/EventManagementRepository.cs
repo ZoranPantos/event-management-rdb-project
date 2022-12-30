@@ -416,7 +416,7 @@ public class EventManagementRepository : IEventManagementRepository
             connection = new(connectionString);
             connection.Open();
 
-            var command = new MySqlCommand(SelectQueries.getSponsorNamesAndMoneyForEvent, connection);
+            var command = new MySqlCommand(SelectQueries.getSponsorNamesForEvent, connection);
 
             command.Parameters.Add(new MySqlParameter()
             {
@@ -630,5 +630,42 @@ public class EventManagementRepository : IEventManagementRepository
         }
 
         return _event;
+    }
+
+    public ICollection<SingleEventSponsorDTO> GetEventSponsors(int eventId)
+    {
+        var sponsors = new List<SingleEventSponsorDTO>();
+
+        try
+        {
+            connection = new(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(SelectQueries.getSponsorNameAndMoneyProvidedForEvent, connection);
+
+            command.Parameters.Add(new MySqlParameter()
+            {
+                ParameterName = "eventId",
+                Value = eventId,
+                DbType = DbType.Int32
+            });
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sponsors.Add(new SingleEventSponsorDTO()
+                {
+                    Name = (string)reader.GetValue("Name"),
+                    MoneyProvided = (decimal)reader.GetValue("MoneyProvided")
+                });
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return sponsors;
     }
 }

@@ -23,4 +23,5 @@ public interface IEventManagementRepository
     void DeleteEvent(int eventId);
     Location GetLocation(int locationId);
     Event GetEvent(int eventId);
+    ICollection<SingleEventSponsorDTO> GetEventSponsors(int eventId);
 }

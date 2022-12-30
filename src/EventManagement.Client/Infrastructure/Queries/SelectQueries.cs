@@ -44,8 +44,8 @@ public class SelectQueries
         INNER JOIN event_management.has h ON t.Id=h.TOPIC_Id
         WHERE h.EVENT_Id=@eventId";
 
-    public const string getSponsorNamesAndMoneyForEvent =
-        $@"SELECT `Name`, MoneyProvided FROM event_management.sponsor s
+    public const string getSponsorNamesForEvent =
+        $@"SELECT `Name` FROM event_management.sponsor s
         INNER JOIN event_management.sponsors ss
         ON s.Id=ss.SPONSOR_Id
         WHERE ss.EVENT_Id=@eventId";
@@ -57,4 +57,10 @@ public class SelectQueries
     public const string getEvent =
         $@"SELECT * FROM event_management.`event` e
         WHERE e.Id=@eventId";
+
+    public const string getSponsorNameAndMoneyProvidedForEvent =
+        $@"SELECT `Name`, MoneyProvided FROM event_management.sponsor s
+        INNER JOIN event_management.sponsors ss
+        ON s.Id=ss.SPONSOR_Id
+        WHERE ss.EVENT_Id=@eventId;";
 }

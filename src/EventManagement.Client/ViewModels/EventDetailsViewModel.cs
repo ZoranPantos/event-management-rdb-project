@@ -133,5 +133,11 @@ public class EventDetailsViewModel : ViewModelBase
         Location = _event.Location.ToString();
 
         Topics = new(repository.GetAllTopicsForEvent(eventId).ToList<Topic>());
+
+        var sponsors = repository.GetEventSponsors(eventId);
+        Sponsors = new();
+
+        foreach (var sponsor in sponsors)
+            Sponsors.Add(new SingleEventSponsorViewModel(sponsor));
     }
 }
