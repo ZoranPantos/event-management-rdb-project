@@ -13,7 +13,11 @@ public class RescheduleEventCommand : CommandBase
     private readonly int eventId;
     private readonly EventDetailsViewModel currentViewModel;
 
-    public RescheduleEventCommand(DateTime currentEventDate, IEventManagementRepository repository, int eventId, EventDetailsViewModel currentViewModel)
+    public RescheduleEventCommand(
+        DateTime currentEventDate,
+        IEventManagementRepository repository,
+        int eventId,
+        EventDetailsViewModel currentViewModel)
     {
         this.currentEventDate = currentEventDate;
         this.repository = repository;
@@ -31,7 +35,10 @@ public class RescheduleEventCommand : CommandBase
         var selectedDate = datePickDialog.SelectedDate;
 
         if (selectedDate <= DateTime.Now)
+        {
             MessageBox.Show("Event cannot be resheculed to this date");
+            return;
+        }
 
         repository.RescheduleEvent(eventId, selectedDate);
         currentViewModel.Date = selectedDate;

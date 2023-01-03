@@ -5,10 +5,7 @@ namespace EventManagement.Demo.Dialogs;
 
 public partial class DatePickDialog : Window
 {
-    public DatePickDialog()
-    {
-        InitializeComponent();
-    }
+    public DatePickDialog() => InitializeComponent();
 
     public DateTime SelectedDate { get; set; } = new();
 
@@ -20,8 +17,6 @@ public partial class DatePickDialog : Window
         this.DialogResult = true;
     }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
+    private void CancelButton_Click(object sender, RoutedEventArgs e) =>
         this.DialogResult = false;
-    }
 }

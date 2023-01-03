@@ -8,7 +8,7 @@
         xmlns:vms="clr-namespace:EventManagement.Demo.ViewModels"
         mc:Ignorable="d"
         Title="EventManagement Demo"
-        Height="700" Width="900">
+        Height="700" Width="950">
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="Beige">

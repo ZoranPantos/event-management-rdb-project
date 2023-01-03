@@ -12,8 +12,6 @@ public class SingleGroupMemberViewModel : ViewModelBase
     public int Age => groupMemberDTO.Age;
     public string Interests => groupMemberDTO.Interests;
 
-    public SingleGroupMemberViewModel(SingleGroupMemberDTO groupMemberDTO)
-    {
+    public SingleGroupMemberViewModel(SingleGroupMemberDTO groupMemberDTO) =>
         this.groupMemberDTO = groupMemberDTO;
-    }
 }

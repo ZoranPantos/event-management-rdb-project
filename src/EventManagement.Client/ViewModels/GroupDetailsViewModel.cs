@@ -81,6 +81,9 @@ public class GroupDetailsViewModel : ViewModelBase
     {
         this.groupId = groupId;
 
+        Members = new();
+        Events = new();
+
         PopulateViewModel(repository, navigationStore);
     }
 
@@ -98,12 +101,8 @@ public class GroupDetailsViewModel : ViewModelBase
 
         var groupMemberDTOs = repository.GetGroupMembers(groupId);
 
-        Members = new();
-
         foreach (var groupMemberDTO in groupMemberDTOs)
             Members.Add(new SingleGroupMemberViewModel(groupMemberDTO));
-
-        Events = new();
 
         var groupEventDTOs = repository.GetGroupEvents(groupId);
 

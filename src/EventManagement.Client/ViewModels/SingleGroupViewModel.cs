@@ -19,7 +19,6 @@ public class SingleGroupViewModel : ViewModelBase
     {
         this.groupDTO = groupDTO;
 
-        // When I add the CRUD for events from group view, I should probably have some kind of "navigate back" function here
         VisitGroupCommand = new NavigateCommand(navigationStore, () => new GroupDetailsViewModel(GroupId, repository, navigationStore));
     }
 }

@@ -9,8 +9,6 @@ public class SingleEventSponsorViewModel : ViewModelBase
     public string Name => sponsorDTO.Name;
     public decimal MoneyProvided => sponsorDTO.MoneyProvided;
 
-    public SingleEventSponsorViewModel(SingleEventSponsorDTO sponsorDTO)
-    {
+    public SingleEventSponsorViewModel(SingleEventSponsorDTO sponsorDTO) =>
         this.sponsorDTO = sponsorDTO;
-    }
 }

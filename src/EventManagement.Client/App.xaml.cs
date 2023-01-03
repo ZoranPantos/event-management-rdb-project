@@ -25,11 +25,7 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        //navigationStore.CurrentViewModel = new ProfileViewModel(repository, navigationStore, CreateUpdateUserViewModel);
-        //navigationStore.CurrentViewModel = new ApplicationsViewModel(repository);
-        navigationStore.CurrentViewModel = new GroupsViewModel(repository, navigationStore);
-        //navigationStore.CurrentViewModel = new EventDetailsViewModel(repository, 1);
-        
+        navigationStore.CurrentViewModel = new ForthcomingEventsViewModel(repository);
 
         MainWindow = new MainWindow()
         {
@@ -47,29 +43,15 @@ public partial class App : Application
         base.OnStartup(e);
     }
 
-    private UpdateProfileViewModel CreateUpdateProfileViewModel()
-    {
-        return new UpdateProfileViewModel(repository, navigationStore, CreateProfileViewModel);
-    }
+    private UpdateProfileViewModel CreateUpdateProfileViewModel() =>
+        new(repository, navigationStore, CreateProfileViewModel);
 
-    private ProfileViewModel CreateProfileViewModel()
-    {
-        return new ProfileViewModel(repository, navigationStore, CreateUpdateProfileViewModel);
-    }
+    private ProfileViewModel CreateProfileViewModel() =>
+        new(repository, navigationStore, CreateUpdateProfileViewModel);
 
-    private ApplicationsViewModel CreateApplicationsViewModel()
-    {
-        return new ApplicationsViewModel(repository);
-    }
+    private ApplicationsViewModel CreateApplicationsViewModel() => new(repository);
 
-    private GroupsViewModel CreateGroupsViewModel()
-    {
-        return new GroupsViewModel(repository, navigationStore);
-    }
+    private GroupsViewModel CreateGroupsViewModel() => new(repository, navigationStore);
 
-    private ForthcomingEventsViewModel CreateForthcomingEventsViewModel()
-    {
-        return new ForthcomingEventsViewModel(repository);
-    }
-    
+    private ForthcomingEventsViewModel CreateForthcomingEventsViewModel() => new(repository);
 }

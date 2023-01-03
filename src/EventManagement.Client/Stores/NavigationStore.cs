@@ -3,8 +3,6 @@ using System;
 
 namespace EventManagement.Demo.Stores;
 
-// Single shared source of truth. We only want one instance of this class throughout the app
-
 public class NavigationStore
 {
     private ViewModelBase currentViewModel;

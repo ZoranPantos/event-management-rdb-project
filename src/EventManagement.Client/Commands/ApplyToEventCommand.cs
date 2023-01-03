@@ -14,10 +14,8 @@ public class ApplyToEventCommand : CommandBase
         this.repository = repository;
     }
 
-    public override void Execute(object? parameter)
-    {
+    public override void Execute(object? parameter) =>
         repository.ApplyForEvent(userId, eventId);
-    }
 
     public override bool CanExecute(object? parameter)
     {

@@ -9,8 +9,6 @@ public class SingleEventAttendeeViewModel : ViewModelBase
     public string FirstName => attendeeDTO.FirstName;
     public string LastName => attendeeDTO.LastName;
 
-    public SingleEventAttendeeViewModel(SingleEventAttendeeDTO attendeeDTO)
-    {
+    public SingleEventAttendeeViewModel(SingleEventAttendeeDTO attendeeDTO) =>
         this.attendeeDTO = attendeeDTO;
-    }
 }

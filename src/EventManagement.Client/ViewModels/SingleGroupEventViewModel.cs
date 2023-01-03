@@ -36,13 +36,9 @@ public class SingleGroupEventViewModel : ViewModelBase
         DeleteEventCommand = new DeleteEventCommand(repository, EventId, events, this);
     }
 
-    private EventDetailsViewModel CreateEventDetailsViewModel()
-    {
-        return new EventDetailsViewModel(repository, EventId, CreateGroupDetailsViewModel, navigationStore);
-    }
+    private EventDetailsViewModel CreateEventDetailsViewModel() =>
+        new(repository, EventId, CreateGroupDetailsViewModel, navigationStore);
 
-    private GroupDetailsViewModel CreateGroupDetailsViewModel()
-    {
-        return new GroupDetailsViewModel(groupId, repository, navigationStore);
-    }
+    private GroupDetailsViewModel CreateGroupDetailsViewModel() =>
+        new(groupId, repository, navigationStore);
 }

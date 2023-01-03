@@ -30,6 +30,5 @@ public class SingleForthcomingEventViewModel : ViewModelBase
         FullAddress = $"{this.airingEventDTO.City}, {this.airingEventDTO.Street}, {this.airingEventDTO.Number}";
 
         ApplyToEventCommand = new ApplyToEventCommand(2, EventId, repository);
-        
     }
 }

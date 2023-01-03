@@ -28,7 +28,6 @@ public class RemoveApplicationCommand : CommandBase
 
     public override void Execute(object? parameter)
     {
-        MessageBox.Show($"User ID: {userId} ; Event ID: {eventId}");
         repository.DeleteEventApplication(userId, eventId);
 
         // Add check here if deletion in repository was successful first
