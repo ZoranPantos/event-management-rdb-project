@@ -1,6 +1,7 @@
 ﻿using EventManagement.Demo.DTOs;
 using EventManagement.Demo.Models;
 using EventManagement.Demo.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace EventManagement.Demo.Infrastructure.Repositories;
@@ -25,4 +26,5 @@ public interface IEventManagementRepository
     Event GetEvent(int eventId);
     ICollection<SingleEventSponsorDTO> GetEventSponsors(int eventId);
     ICollection<SingleEventAttendeeDTO> GetAttendees(int eventId);
+    void RescheduleEvent(int eventId, DateTime newDate);
 }

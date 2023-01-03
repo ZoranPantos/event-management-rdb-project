@@ -117,10 +117,15 @@ public class EventDetailsViewModel : ViewModelBase
     public ICommand RescheduleEventCommand { get; }
     public ICommand GoBack { get; }
 
-    public EventDetailsViewModel(IEventManagementRepository repository, int eventId, Func<ViewModelBase> createViewModel, NavigationStore navigationStore)
+    public EventDetailsViewModel(
+        IEventManagementRepository repository,
+        int eventId,
+        Func<ViewModelBase> createViewModel,
+        NavigationStore navigationStore)
     {
         PopulateViewModel(repository, eventId);
 
+        RescheduleEventCommand = new RescheduleEventCommand(Date, repository, eventId, this);
         GoBack = new NavigateCommand(navigationStore, createViewModel);
     }
 

@@ -4,6 +4,7 @@ using EventManagement.Demo.Models;
 using EventManagement.Demo.ViewModels;
 using MySqlConnector;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows;
@@ -12,8 +13,6 @@ namespace EventManagement.Demo.Infrastructure.Repositories;
 
 public class EventManagementRepository : IEventManagementRepository
 {
-    //private MySqlConnection? connection;
-
     // TODO: Put this string into a config file
     private readonly string connectionString = "server=localhost;user ID=root;password=root;database=event_management";
 
@@ -38,7 +37,6 @@ public class EventManagementRepository : IEventManagementRepository
             using var reader = command.ExecuteReader();
             reader.Read();
 
-            // Maybe add a Populate method in the RegularUser entity and move this mapping there?
             resultUser.Id = id;
 
             resultUser.FirstName = (string)reader.GetValue("FirstName");
@@ -704,5 +702,44 @@ public class EventManagementRepository : IEventManagementRepository
         }
 
         return attendees;
+    }
+
+    public void RescheduleEvent(int eventId, DateTime newDate)
+    {
+        try
+        {
+            using var connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            var command = new MySqlCommand(UpdateQueries.rescheduleEvent, connection);
+
+            command.Parameters.AddRange(
+                new MySqlParameter[]
+                {
+                    new MySqlParameter
+                    {
+                        ParameterName = "eventId",
+                        Value = eventId,
+                        DbType = DbType.Int32
+                    },
+                    new MySqlParameter
+                    {
+                        ParameterName = "newDate",
+                        Value = newDate,
+                        DbType = DbType.DateTime
+                    }
+                }
+            );
+
+            int affectedRows = command.ExecuteNonQuery();
+
+            // Repository should not communicate directly to the UI - change this!
+            string message = affectedRows == 1 ? "Event rescheduled" : "Operation failed";
+            MessageBox.Show(message);
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
     }
 }
