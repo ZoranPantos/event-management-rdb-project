@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:EventManagement.Demo.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Grid>
+
+    <Grid Style="{StaticResource StyledGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -25,26 +25,26 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Title: " />
-        <TextBlock Grid.Column="1" Text="{Binding Title}" />
+        <TextBlock Text="Title: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Column="1" Text="{Binding Title}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="1" Text="Description" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" />
+        <TextBlock Grid.Row="1" Text="Description" Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="2" Text="Active status: " />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ActiveStatus}" />
+        <TextBlock Grid.Row="2" Text="Active status: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ActiveStatus}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="3" Text="Public status: " />
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PublicStatus}" />
+        <TextBlock Grid.Row="3" Text="Public status: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PublicStatus}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="4" Text="Venue: " />
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Venue}" />
+        <TextBlock Grid.Row="4" Text="Venue: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Venue}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="5" Text="Member count: " />
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding MemberCount}" />
+        <TextBlock Grid.Row="5" Text="Member count: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding MemberCount}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="6" Text="Group events: " />
-        <ListView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Events}">
+        <TextBlock Grid.Row="6" Text="Group events: " Style="{StaticResource StyledTextBlock}" />
+        <ListView Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Events}" Margin="0,0,0,5">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title">
@@ -58,7 +58,8 @@
                     <GridViewColumn Header="Control 1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Details" Command="{Binding VisitEventPageCommand}" />
+                                <Button Content="Details" Command="{Binding VisitEventPageCommand}"
+                                        Style="{StaticResource StyledButton}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -67,7 +68,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Delete"
-                                        Command="{Binding DeleteEventCommand}" />
+                                        Command="{Binding DeleteEventCommand}"
+                                        Style="{StaticResource StyledButton}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -75,10 +77,10 @@
             </ListView.View>
         </ListView>
 
-        <Button Grid.Row="7" Grid.Column="1" Content="New Event" Width="100" HorizontalAlignment="Left" />
+        <Button Grid.Row="7" Grid.Column="1" Content="New Event" HorizontalAlignment="Left" Style="{StaticResource StyledButton}" />
 
-        <TextBlock Grid.Row="8" Text="Group members: " />
-        <ListView Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Members}">
+        <TextBlock Grid.Row="8" Text="Group members: " Style="{StaticResource StyledTextBlock}" />
+        <ListView Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Members}" Margin="0,5,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First name">

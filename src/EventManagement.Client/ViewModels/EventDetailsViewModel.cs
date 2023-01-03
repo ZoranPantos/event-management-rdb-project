@@ -99,17 +99,6 @@ public class EventDetailsViewModel : ViewModelBase
         }
     }
 
-    private string groupName = string.Empty;
-    public string GroupName
-    {
-        get => groupName;
-        set
-        {
-            groupName = value;
-            OnPropertyChanged(nameof(GroupName));
-        }
-    }
-
     public ObservableCollection<Topic> Topics { get; set; }
     public ObservableCollection<SingleEventSponsorViewModel> Sponsors { get; set; }
     public ObservableCollection<SingleEventAttendeeViewModel> Attendees { get; set; }

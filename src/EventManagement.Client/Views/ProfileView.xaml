@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Margin="10">
+    <Grid Style="{StaticResource StyledGrid}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -23,24 +24,26 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="First name: " />
-        <TextBlock Grid.Column="1" Text="{Binding FirstName}" />
+        <TextBlock Text="My profile" Style="{StaticResource HeadingStyle}" />
 
-        <TextBlock Grid.Row="1" Text="Last name: " />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />
+        <TextBlock Grid.Row="1" Text="First name: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FirstName}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="2" Text="Age: " />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Age}" />
+        <TextBlock Grid.Row="2" Text="Last name: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LastName}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="3" Text="Date joined: " />
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DateJoined}" />
+        <TextBlock Grid.Row="3" Text="Age: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Age}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="4" Text="Status: " />
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Status}" />
+        <TextBlock Grid.Row="4" Text="Date joined: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding DateJoined}" Style="{StaticResource StyledTextBlock}" />
 
-        <TextBlock Grid.Row="5" Text="Interests: " />
-        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Interests}" />
+        <TextBlock Grid.Row="5" Text="Status: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Status}" Style="{StaticResource StyledTextBlock}" />
 
-        <Button Grid.Row="6" Content="Edit" Command="{Binding EditCommand}" />
+        <TextBlock Grid.Row="6" Text="Interests: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Interests}" Style="{StaticResource StyledTextBlock}" />
+
+        <Button Grid.Row="7" Content="Edit" Command="{Binding EditCommand}" Style="{StaticResource StyledButton}" />
     </Grid>
 </UserControl>

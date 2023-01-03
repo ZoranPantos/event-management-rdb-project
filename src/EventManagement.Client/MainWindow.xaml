@@ -8,14 +8,15 @@
         xmlns:vms="clr-namespace:EventManagement.Demo.ViewModels"
         mc:Ignorable="d"
         Title="EventManagement Demo"
-        Height="700" Width="950">
+        Height="650" Width="1000"
+        WindowStartupLocation="CenterScreen">
 
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Background="Beige">
-            <Button Content="Home" Command="{Binding HomeCommand}"/>
-            <Button Content="My Groups" Command="{Binding MyGroupsCommand}" />
-            <Button Content="My Applications" Command="{Binding MyApplicationsCommand}" />
-            <Button Content="Profile" Command="{Binding ProfileCommand}" />
+        <StackPanel DockPanel.Dock="Left" Background="#D3D1ED">
+            <Button Content="Home" Command="{Binding HomeCommand}" Style="{StaticResource StyledButton}" Margin="5" />
+            <Button Content="My Groups" Command="{Binding MyGroupsCommand}" Style="{StaticResource StyledButton}" Margin="5,0,5,5" />
+            <Button Content="My Applications" Command="{Binding MyApplicationsCommand}" Style="{StaticResource StyledButton}" Margin="5,0,5,5" />
+            <Button Content="Profile" Command="{Binding ProfileCommand}" Style="{StaticResource StyledButton}" Margin="5,0,5,0" />
         </StackPanel>
 
         <Grid>

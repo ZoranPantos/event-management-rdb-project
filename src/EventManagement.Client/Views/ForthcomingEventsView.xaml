@@ -7,40 +7,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel>
-        <TextBlock Text="Airing events" />
+    <Grid Style="{StaticResource StyledGrid}">
+        <StackPanel>
+            <TextBlock Text="Incoming events" Style="{StaticResource HeadingStyle}" />
 
-        <ListView ItemsSource="{Binding Airings}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Info">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}" />
-                                    <TextBlock Text="{Binding Description}" />
-                                    <TextBlock Text="{Binding GroupName}" />
-                                    <TextBlock Text="{Binding AiringDate}" />
-                                    <TextBlock Text="{Binding FullAddress}" />
-                                    <TextBlock Text="{Binding DailySchedule}" />
-                                    <TextBlock Text="{Binding Sponsors}" />
-                                    <TextBlock Text="{Binding Topics}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+            <ListView ItemsSource="{Binding Airings}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Info">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding Description}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding GroupName}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding AiringDate}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding FullAddress}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding DailySchedule}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding Sponsors}" Style="{StaticResource StyledTextBlock}" />
+                                        <TextBlock Text="{Binding Topics}" Style="{StaticResource StyledTextBlock}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <GridViewColumn Header="Control">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Apply"
+                        <GridViewColumn Header="Control">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Apply"
                                         Command="{Binding ApplyToEventCommand,
-                                        UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </StackPanel>
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource StyledButton}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
 </UserControl>

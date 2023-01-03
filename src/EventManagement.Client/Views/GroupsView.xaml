@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:EventManagement.Demo.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    <Grid Style="{StaticResource StyledGrid}">
         <StackPanel>
-            <TextBlock Text="My groups" />
+            <TextBlock Text="My groups" Style="{StaticResource HeadingStyle}" />
 
             <ListView ItemsSource="{Binding Groups}">
                 <ListView.View>
@@ -25,7 +26,8 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Visit"
-                                            Command="{Binding VisitGroupCommand}" />
+                                            Command="{Binding VisitGroupCommand}"
+                                            Style="{StaticResource StyledButton}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

@@ -7,16 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="10">
-        <TextBlock Text="First name" />
-        <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+    <Grid Style="{StaticResource StyledGrid}">
+        <StackPanel>
+            <TextBlock Text="First name" Style="{StaticResource StyledTextBlock}" />
+            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
 
-        <TextBlock Text="Last name" />
-        <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Last name" Style="{StaticResource StyledTextBlock}" />
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5" />
 
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Save" Command="{Binding SaveCommand}" />
-            <Button Content="Cancel" Command="{Binding CancelCommand}" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save" Command="{Binding SaveCommand}" Style="{StaticResource StyledButton}" Margin="0,0,10,0" />
+                <Button Content="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource StyledButton}" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>
