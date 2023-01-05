@@ -1,18 +1,18 @@
-﻿using System;
+﻿using EventManagement.Demo.Models;
 using System.Windows;
 
 namespace EventManagement.Demo.Dialogs;
 
-public partial class DatePickDialog : Window
+public partial class AddTopicDialog : Window
 {
-    public DatePickDialog() => InitializeComponent();
+    public Topic Topic { get; set; } = new();
 
-    public DateTime SelectedDate { get; set; } = new();
+    public AddTopicDialog() => InitializeComponent();
 
     private void OkButton_Click(object sender, RoutedEventArgs e)
     {
-        if (EventDatePicker.SelectedDate != null)
-            SelectedDate = (DateTime)EventDatePicker.SelectedDate;
+        Topic.Title = NameTextBox.Text;
+        Topic.Description = DescriptionTextBox.Text;
 
         this.DialogResult = true;
     }

@@ -48,6 +48,10 @@
                 <DataTemplate DataType="{x:Type vms:EventDetailsViewModel}">
                     <views:EventDetailsView />
                 </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vms:CreateEventViewModel}">
+                    <views:CreateEventView />
+                </DataTemplate>
             </Grid.Resources>
 
             <ContentControl Content="{Binding CurrentViewModel}" />

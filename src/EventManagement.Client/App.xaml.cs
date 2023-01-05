@@ -25,7 +25,8 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        navigationStore.CurrentViewModel = new ForthcomingEventsViewModel(repository);
+        //navigationStore.CurrentViewModel = new ForthcomingEventsViewModel(repository);
+        navigationStore.CurrentViewModel = new CreateEventViewModel();
 
         MainWindow = new MainWindow()
         {

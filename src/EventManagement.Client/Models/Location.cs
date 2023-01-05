@@ -1,4 +1,6 @@
-﻿namespace EventManagement.Demo.Models;
+﻿using System;
+
+namespace EventManagement.Demo.Models;
 
 public class Location
 {
