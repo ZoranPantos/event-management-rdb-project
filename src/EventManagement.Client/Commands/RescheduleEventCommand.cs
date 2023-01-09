@@ -8,10 +8,10 @@ namespace EventManagement.Demo.Commands;
 
 public class RescheduleEventCommand : CommandBase
 {
+    private readonly EventDetailsViewModel currentViewModel;
     private readonly IEventManagementRepository repository;
     private readonly DateTime currentEventDate;
     private readonly int eventId;
-    private readonly EventDetailsViewModel currentViewModel;
 
     public RescheduleEventCommand(
         DateTime currentEventDate,

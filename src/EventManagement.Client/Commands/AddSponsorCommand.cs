@@ -8,10 +8,8 @@ public class AddSponsorCommand : CommandBase
 {
     private CreateEventViewModel viewModel;
 
-    public AddSponsorCommand(CreateEventViewModel viewModel)
-    {
+    public AddSponsorCommand(CreateEventViewModel viewModel) =>
         this.viewModel = viewModel;
-    }
 
     public override void Execute(object? parameter)
     {

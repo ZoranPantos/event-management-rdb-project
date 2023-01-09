@@ -30,7 +30,7 @@ public class RemoveApplicationCommand : CommandBase
     {
         repository.DeleteEventApplication(userId, eventId);
 
-        // Add check here if deletion in repository was successful first
+        // TODO: Add check here if deletion in repository was successful first
         applications.Remove(viewModel);
     }
 }

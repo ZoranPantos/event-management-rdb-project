@@ -28,7 +28,7 @@ public class DeleteEventCommand : CommandBase
     {
         repository.DeleteEvent(eventId);
 
-        // add check if deletion was successful first
+        // TODO: Add check if deletion was successful first
         events.Remove(viewModel);
     }
 }

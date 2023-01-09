@@ -24,19 +24,19 @@
                 <TextBlock Text="Location" Style="{StaticResource StyledTextBlock}" />
                 <Button Content="+" Command="{Binding AddLocationCommand}" Margin="5,0,0,0" Height="20" Width="20" />
             </StackPanel>
-            <TextBox IsReadOnly="True" Text="{Binding Location}" Margin="0,5" />
+            <TextBox IsReadOnly="True" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Topics" Style="{StaticResource StyledTextBlock}" />
                 <Button Content="+" Command="{Binding AddTopicCommand}" Margin="5,0,0,0" Height="20" Width="20" />
             </StackPanel>
-            <TextBox IsReadOnly="True" Text="{Binding Topics}" Margin="0,5" />
+            <TextBox IsReadOnly="True" Text="{Binding Topics, UpdateSourceTrigger=PropertyChanged}" Margin="0,5" />
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Sponsors" Style="{StaticResource StyledTextBlock}" />
                 <Button Content="+" Command="{Binding AddSponsorCommand}" Margin="5,0,0,0" Height="20" Width="20" />
             </StackPanel>
-            <TextBox IsReadOnly="True" Text="{Binding Sponsors}" Margin="0,5,0,30" />
+            <TextBox IsReadOnly="True" Text="{Binding Sponsors, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,30" />
 
             <TextBlock Text="Date" Style="{StaticResource StyledTextBlock}" />
             <DatePicker SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />

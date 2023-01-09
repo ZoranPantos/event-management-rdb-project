@@ -8,10 +8,8 @@ public class AddTopicCommand : CommandBase
 {
     private CreateEventViewModel viewModel;
 
-    public AddTopicCommand(CreateEventViewModel viewModel)
-    {
+    public AddTopicCommand(CreateEventViewModel viewModel) =>
         this.viewModel = viewModel;
-    }
 
     public override void Execute(object? parameter)
     {

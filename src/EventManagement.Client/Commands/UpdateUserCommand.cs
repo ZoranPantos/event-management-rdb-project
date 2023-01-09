@@ -11,21 +11,21 @@ public class UpdateUserCommand : CommandBase
     private readonly NavigationStore navigationStore;
     private readonly Func<ViewModelBase> createViewModel;
 
-    private readonly UpdateProfileViewModel updateUserViewModel;
+    private readonly UpdateProfileViewModel updateProfileViewModel;
     private readonly IEventManagementRepository eventManagementRepository;
 
     public UpdateUserCommand(
-        UpdateProfileViewModel updateUserViewModel,
+        UpdateProfileViewModel updateProfileViewModel,
         IEventManagementRepository eventManagementRepository,
         NavigationStore navigationStore,
         Func<ViewModelBase> createViewModel)
     {
-        this.updateUserViewModel = updateUserViewModel;
+        this.updateProfileViewModel = updateProfileViewModel;
         this.eventManagementRepository = eventManagementRepository;
         this.navigationStore = navigationStore;
         this.createViewModel = createViewModel;
 
-        updateUserViewModel.PropertyChanged += OnViewModelPropertyChanged;
+        updateProfileViewModel.PropertyChanged += OnViewModelPropertyChanged;
     }
 
     private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -40,7 +40,7 @@ public class UpdateUserCommand : CommandBase
     public override void Execute(object? parameter)
     {
         // TODO: get this user id from some upper layers
-        eventManagementRepository.UpdateUserWithId(2, updateUserViewModel);
+        eventManagementRepository.UpdateUserWithId(2, updateProfileViewModel);
 
         // After the message box dialog is completed
         navigationStore.CurrentViewModel = createViewModel();
@@ -48,8 +48,8 @@ public class UpdateUserCommand : CommandBase
 
     public override bool CanExecute(object? parameter)
     {
-        return !string.IsNullOrEmpty(updateUserViewModel.FirstName) &&
-            !string.IsNullOrEmpty(updateUserViewModel.LastName) &&
+        return !string.IsNullOrEmpty(updateProfileViewModel.FirstName) &&
+            !string.IsNullOrEmpty(updateProfileViewModel.LastName) &&
             base.CanExecute(parameter);
     }
 }

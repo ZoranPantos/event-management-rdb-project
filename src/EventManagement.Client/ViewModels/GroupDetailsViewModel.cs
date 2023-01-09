@@ -120,13 +120,9 @@ public class GroupDetailsViewModel : ViewModelBase
             Events.Add(new SingleGroupEventViewModel(groupEventDTO, repository, Events, navigationStore, groupId));
     }
 
-    private CreateEventViewModel CreateCreateEventViewModel()
-    {
-        return new CreateEventViewModel(repository, groupId, navigationStore, CreateGroupDetailsViewModel);
-    }
+    private CreateEventViewModel CreateCreateEventViewModel() =>
+        new(repository, groupId, navigationStore, CreateGroupDetailsViewModel);
 
-    private GroupDetailsViewModel CreateGroupDetailsViewModel()
-    {
-        return new GroupDetailsViewModel(groupId, repository, navigationStore);
-    }
+    private GroupDetailsViewModel CreateGroupDetailsViewModel() =>
+        new(groupId, repository, navigationStore);
 }

@@ -8,10 +8,8 @@ public class AddLocationCommand : CommandBase
 {
     private CreateEventViewModel viewModel;
 
-    public AddLocationCommand(CreateEventViewModel viewModel)
-    {
+    public AddLocationCommand(CreateEventViewModel viewModel) =>
         this.viewModel = viewModel;
-    }
 
     public override void Execute(object? parameter)
     {
