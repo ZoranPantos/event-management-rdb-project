@@ -52,8 +52,10 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
-                <Button Content="Save" Style="{StaticResource StyledButton}" Margin="0,0,10,0" />
-                <Button Content="Cancel" Style="{StaticResource StyledButton}" />
+                <Button Content="Save" Style="{StaticResource StyledButton}" Margin="0,0,10,0" 
+                        Command="{Binding SaveEventCommand}" />
+                <Button Content="Cancel" Style="{StaticResource StyledButton}"
+                        Command="{Binding CancelCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>

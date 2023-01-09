@@ -742,4 +742,329 @@ public class EventManagementRepository : IEventManagementRepository
             MessageBox.Show(e.Message);
         }
     }
+
+    // TODO: Simplify this method
+    public void CreateEvent(CreateEventViewModel viewModel)
+    {
+        try
+        {
+            int locationFK, eventId;
+            var topicFKs = new List<int>();
+            var sponsorFKs = new List<(int, decimal)>();
+
+            using var connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+            using var command = connection.CreateCommand();
+
+            command.Transaction = transaction;
+
+            try
+            {
+                // 1. creating a location
+
+                command.CommandText = InsertQueries.addLocation;
+
+                command.Parameters.AddRange(
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter
+                        {
+                            ParameterName = "city",
+                            Value = viewModel.TmpLocation.City,
+                            DbType = DbType.String
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "street",
+                            Value = viewModel.TmpLocation.Street,
+                            DbType = DbType.String
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "number",
+                            Value = viewModel.TmpLocation.Number,
+                            DbType = DbType.Int32
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "latitude",
+                            Value = viewModel.TmpLocation.Latitude,
+                            DbType = DbType.Decimal
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "longitude",
+                            Value = viewModel.TmpLocation.Longitude,
+                            DbType = DbType.Decimal
+                        }
+                    }
+                );
+
+                command.ExecuteNonQuery();
+                locationFK = (int)command.LastInsertedId;
+                command.Parameters.Clear();
+
+                // 2. creating sponsors
+
+                command.CommandText = InsertQueries.addSponsor;
+
+                foreach (var sponsor in viewModel.SponsorDTOs)
+                {
+                    command.Parameters.AddRange(
+                        new MySqlParameter[]
+                        {
+                            new MySqlParameter
+                            {
+                                ParameterName = "name",
+                                Value = sponsor.Sponsor.Name,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "domain",
+                                Value = sponsor.Sponsor.DomainOfWork,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "ceo",
+                                Value = sponsor.Sponsor.CurrentCEO,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "year",
+                                Value = sponsor.Sponsor.EstablishmentYear,
+                                DbType = DbType.Int32
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "headquarters",
+                                Value = sponsor.Sponsor.Headquarters,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "motto",
+                                Value = sponsor.Sponsor.Motto,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "email",
+                                Value = sponsor.Sponsor.Email,
+                                DbType = DbType.String
+                            }
+                        }
+                    );
+
+                    command.ExecuteNonQuery();
+
+                    sponsorFKs.Add(((int)command.LastInsertedId, sponsor.MoneyProvided));
+
+                    command.Parameters.Clear();
+                }
+
+                // 3. creating topics
+
+                command.CommandText = InsertQueries.addTopic;
+
+                foreach (var topic in viewModel.TmpTopics)
+                {
+                    command.Parameters.AddRange(
+                        new MySqlParameter[]
+                        {
+                            new MySqlParameter
+                            {
+                                ParameterName = "title",
+                                Value = topic.Title,
+                                DbType = DbType.String
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "description",
+                                Value = topic.Description,
+                                DbType = DbType.String
+                            }
+                        }
+                    );
+
+                    command.ExecuteNonQuery();
+
+                    topicFKs.Add((int)command.LastInsertedId);
+
+                    command.Parameters.Clear();
+                }
+
+                // 4. creating the event
+
+                command.CommandText = InsertQueries.addEvent;
+
+                command.Parameters.AddRange(
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter
+                        {
+                            ParameterName = "date",
+                            Value = viewModel.Date,
+                            DbType = DbType.DateTime
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "title",
+                            Value = viewModel.Title,
+                            DbType = DbType.String
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "description",
+                            Value = viewModel.Description,
+                            DbType = DbType.String
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "schedule",
+                            Value = viewModel.DailySchedule,
+                            DbType = DbType.String
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "isRecurring",
+                            Value = viewModel.IsRecurring,
+                            DbType = DbType.Boolean
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "isOpen",
+                            Value = viewModel.IsOpen,
+                            DbType = DbType.Boolean
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "isSuspended",
+                            Value = false,
+                            DbType = DbType.Boolean
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "locationId",
+                            Value = locationFK,
+                            DbType = DbType.Int32
+                        }
+                    }
+                );
+
+                command.ExecuteNonQuery();
+
+                eventId = (int)command.LastInsertedId;
+
+                command.Parameters.Clear();
+
+                // 5. populating event has topics 
+
+                command.CommandText = InsertQueries.addHasTopic;
+
+                foreach (int topicId in topicFKs)
+                {
+                    command.Parameters.AddRange(
+                        new MySqlParameter[]
+                        {
+                            new MySqlParameter
+                            {
+                                ParameterName = "eventId",
+                                Value = eventId,
+                                DbType = DbType.Int32
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "topicId",
+                                Value = topicId,
+                                DbType = DbType.Int32
+                            }
+                        }
+                    );
+
+                    command.ExecuteNonQuery();
+
+                    command.Parameters.Clear();
+                }
+
+                // 6. populating sponsorship
+
+                command.CommandText = InsertQueries.addSponsorship;
+
+                foreach (var sponsorship in sponsorFKs)
+                {
+                    command.Parameters.AddRange(
+                        new MySqlParameter[]
+                        {
+                            new MySqlParameter
+                            {
+                                ParameterName = "sponsorId",
+                                Value = sponsorship.Item1,
+                                DbType = DbType.Int32
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "eventId",
+                                Value = eventId,
+                                DbType = DbType.Int32
+                            },
+                            new MySqlParameter
+                            {
+                                ParameterName = "money",
+                                Value = sponsorship.Item2,
+                                DbType = DbType.Decimal
+                            }
+                        }
+                    );
+
+                    command.ExecuteNonQuery();
+
+                    command.Parameters.Clear();
+                }
+
+                // 7. populating event hosting
+
+                command.CommandText = InsertQueries.addOrganizesEvent;
+
+                command.Parameters.AddRange(
+                    new MySqlParameter[]
+                    {
+                        new MySqlParameter
+                        {
+                            ParameterName = "eventId",
+                            Value = eventId,
+                            DbType = DbType.Int32
+                        },
+                        new MySqlParameter
+                        {
+                            ParameterName = "groupId",
+                            Value = viewModel.GroupId,
+                            DbType = DbType.Int32
+                        }
+                    }
+                );
+
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+
+                MessageBox.Show("Event created");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+                try { transaction.Rollback(); }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+    }
 }

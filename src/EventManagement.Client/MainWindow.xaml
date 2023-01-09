@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="EventManagement Demo"
         Height="650" Width="1000"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="#D3D1ED">

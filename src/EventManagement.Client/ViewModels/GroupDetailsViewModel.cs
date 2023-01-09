@@ -1,11 +1,15 @@
-﻿using EventManagement.Demo.Infrastructure.Repositories;
+﻿using EventManagement.Demo.Commands;
+using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Stores;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace EventManagement.Demo.ViewModels;
 
 public class GroupDetailsViewModel : ViewModelBase
 {
+    private readonly IEventManagementRepository repository;
+    private readonly NavigationStore navigationStore;
     private readonly int groupId;
 
     private string title = string.Empty;
@@ -77,14 +81,20 @@ public class GroupDetailsViewModel : ViewModelBase
     public ObservableCollection<SingleGroupMemberViewModel> Members { get; set; }
     public ObservableCollection<SingleGroupEventViewModel> Events { get; set; }
 
+    public ICommand NewEventCommand { get; }
+
     public GroupDetailsViewModel(int groupId, IEventManagementRepository repository, NavigationStore navigationStore)
     {
         this.groupId = groupId;
+        this.repository = repository;
+        this.navigationStore = navigationStore;
 
         Members = new();
         Events = new();
 
         PopulateViewModel(repository, navigationStore);
+
+        NewEventCommand = new NavigateCommand(navigationStore, CreateCreateEventViewModel);
     }
 
     private void PopulateViewModel(IEventManagementRepository repository, NavigationStore navigationStore)
@@ -108,5 +118,15 @@ public class GroupDetailsViewModel : ViewModelBase
 
         foreach (var groupEventDTO in groupEventDTOs)
             Events.Add(new SingleGroupEventViewModel(groupEventDTO, repository, Events, navigationStore, groupId));
+    }
+
+    private CreateEventViewModel CreateCreateEventViewModel()
+    {
+        return new CreateEventViewModel(repository, groupId, navigationStore, CreateGroupDetailsViewModel);
+    }
+
+    private GroupDetailsViewModel CreateGroupDetailsViewModel()
+    {
+        return new GroupDetailsViewModel(groupId, repository, navigationStore);
     }
 }

@@ -13,6 +13,7 @@ public interface IEventManagementRepository
     void ApplyForEvent(int userId, int eventId);
     void DeleteEvent(int eventId);
     void RescheduleEvent(int eventId, DateTime newDate);
+    void CreateEvent(CreateEventViewModel viewModel);
 
     RegularUser GetUserWithId(int id);
     Group GetGroupWithId(int id);

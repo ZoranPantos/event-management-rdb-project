@@ -1,6 +1,8 @@
 ﻿using EventManagement.Demo.Commands;
 using EventManagement.Demo.DTOs;
+using EventManagement.Demo.Infrastructure.Repositories;
 using EventManagement.Demo.Models;
+using EventManagement.Demo.Stores;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,6 +11,8 @@ namespace EventManagement.Demo.ViewModels;
 
 public class CreateEventViewModel : ViewModelBase
 {
+    public int GroupId { get; set; }
+
     private string title = string.Empty;
     public string Title
     {
@@ -118,10 +122,14 @@ public class CreateEventViewModel : ViewModelBase
     public ICommand SaveEventCommand { get; }
     public ICommand CancelCommand { get; }
 
-    public CreateEventViewModel()
+    public CreateEventViewModel(IEventManagementRepository repository, int groupId, NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
     {
+        GroupId = groupId;
+
         AddLocationCommand = new AddLocationCommand(this);
         AddTopicCommand = new AddTopicCommand(this);
         AddSponsorCommand = new AddSponsorCommand(this);
+        SaveEventCommand = new SaveEventCommand(repository, this, navigationStore, createViewModel);
+        CancelCommand = new NavigateCommand(navigationStore, createViewModel);
     }
 }
