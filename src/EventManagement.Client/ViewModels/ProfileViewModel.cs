@@ -74,6 +74,17 @@ public class ProfileViewModel : ViewModelBase
             OnPropertyChanged(nameof(Interests));
         }
     }
+
+    private string telNumbers = string.Empty;
+    public string TelNumbers
+    {
+        get => telNumbers;
+        set
+        {
+            telNumbers = value;
+            OnPropertyChanged(nameof(TelNumbers));
+        }
+    }
     
     public ICommand EditCommand { get; }
 
@@ -82,18 +93,20 @@ public class ProfileViewModel : ViewModelBase
         NavigationStore navigationStore,
         Func<ViewModelBase> createViewModel)
     {
-        PopulateViewModel(repository.GetUserWithId(2));
-
+        PopulateViewModel(repository);
         EditCommand = new NavigateCommand(navigationStore, createViewModel);
     }
 
-    private void PopulateViewModel(RegularUser resultUser)
+    private void PopulateViewModel(IEventManagementRepository repository)
     {
+        var resultUser = repository.GetUserWithId(2);
+
         FirstName = resultUser.FirstName;
         LastName = resultUser.LastName;
         Age = resultUser.Age;
         DateJoined = resultUser.MemberSince;
         Status = resultUser.IsSuspended ? "Suspended" : "Active";
         Interests = resultUser.Interests;
+        TelNumbers = repository.GetAllTelephonesAsString(2);
     }
 }

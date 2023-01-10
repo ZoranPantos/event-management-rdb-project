@@ -1067,4 +1067,35 @@ public class EventManagementRepository : IEventManagementRepository
             MessageBox.Show(e.Message);
         }
     }
+
+    public string GetAllTelephonesAsString(int userId)
+    {
+        string telNumbers = "";
+
+        try
+        {
+            using var connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            using var command = new MySqlCommand(SelectQueries.getTelNumbers, connection);
+
+            command.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "userId",
+                Value = userId,
+                DbType = DbType.Int32
+            });
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+                telNumbers += $"{reader.GetValue("TelephoneNumber")}   ";
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+
+        return telNumbers;
+    }
 }

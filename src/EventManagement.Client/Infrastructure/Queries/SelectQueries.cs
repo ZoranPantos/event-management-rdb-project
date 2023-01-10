@@ -68,5 +68,9 @@ public class SelectQueries
         $@"SELECT FirstName, LastName FROM event_management.`user` u
         INNER JOIN event_management.regular_user ru ON u.Id=ru.USER_Id
         INNER JOIN event_management.applies_to a ON a.REGULAR_USER_USER_Id=u.Id
-        WHERE a.EVENT_Id=@eventId;";
+        WHERE a.EVENT_Id=@eventId";
+
+    public const string getTelNumbers =
+        $@"SELECT TelephoneNumber FROM event_management.telephone t
+        WHERE t.REGULAR_USER_USER_Id=@userId";
 }

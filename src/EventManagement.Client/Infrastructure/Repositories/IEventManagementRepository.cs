@@ -15,6 +15,8 @@ public interface IEventManagementRepository
     void RescheduleEvent(int eventId, DateTime newDate);
     void CreateEvent(CreateEventViewModel viewModel);
 
+    string GetAllTelephonesAsString(int userId);
+
     RegularUser GetUserWithId(int id);
     Group GetGroupWithId(int id);
     Venue GetGroupVenue(int groupId);

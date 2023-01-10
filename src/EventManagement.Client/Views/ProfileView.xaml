@@ -15,6 +15,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -44,6 +45,9 @@
         <TextBlock Grid.Row="6" Text="Interests: " Style="{StaticResource StyledTextBlock}" />
         <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding Interests}" Style="{StaticResource StyledTextBlock}" />
 
-        <Button Grid.Row="7" Content="Edit" Command="{Binding EditCommand}" Style="{StaticResource StyledButton}" />
+        <TextBlock Grid.Row="7" Text="Contact: " Style="{StaticResource StyledTextBlock}" />
+        <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding TelNumbers}" Style="{StaticResource StyledTextBlock}" />
+
+        <Button Grid.Row="8" Content="Edit" Command="{Binding EditCommand}" Style="{StaticResource StyledButton}" />
     </Grid>
 </UserControl>
